@@ -1,8 +1,9 @@
 <template>
   <router-view></router-view>
 </template>
+
 <script>
 export default {
-  name: "Channels"
+  name: "channel"
 };
 </script>

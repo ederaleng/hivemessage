@@ -1,8 +1,10 @@
 <template>
-  <router-view></router-view>
+  <div>
+    Perfil
+  </div>
 </template>
 <script>
 export default {
-  name: "Channels"
+  name: "perfil"
 };
 </script>

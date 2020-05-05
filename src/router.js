@@ -1,9 +1,14 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Home from "@/components/Home";
-import NotFound from "@/components/NotFound";
-import Channels from "@/components/Channels";
+// routes
+import home from "@/components/home";
+import notFound from "@/components/notFound";
+import channels from "@/components/channels";
+// components
+import channel from "@/components/channels/channel";
+import room from "@/components/channels/channel/components/room";
+import perfil from "@/components/channels/perfil";
 
 Vue.use(Router);
 
@@ -14,28 +19,28 @@ export default new Router({
     {
       path: "/",
       name: "Home",
-      component: Home
-    },
-    {
-      path: "/me",
-      name: "me",
-      component: Home
+      component: home
     },
     {
       path: "/channels",
       name: "channels",
-      component: Channels,
+      component: channels,
+      redirect: { name: "perfil" },
       children: [
         {
-          path: ":block",
-          name: "block",
-          component: Home,
+          path: "/",
+          name: "perfil",
+          component: perfil
+        },
+        {
+          path: ":channel",
+          name: "channel",
+          component: channel,
           children: [
             {
-              path: ":trx_id",
-              name: "Home",
-              component: Home,
-              children: []
+              path: ":room",
+              name: "room",
+              component: room
             }
           ]
         }
@@ -44,7 +49,7 @@ export default new Router({
     {
       path: "*",
       name: "not_found",
-      component: NotFound
+      component: notFound
     }
   ]
 });
