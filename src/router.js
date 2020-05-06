@@ -7,7 +7,7 @@ import notFound from "@/components/notFound";
 import channels from "@/components/channels";
 // components
 import channel from "@/components/channels/channel";
-import room from "@/components/channels/channel/components/room";
+import room from "@/components/channels/channel/components/ChatsRooms";
 import perfil from "@/components/channels/perfil";
 
 Vue.use(Router);
