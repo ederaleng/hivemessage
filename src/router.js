@@ -3,6 +3,7 @@ import Router from "vue-router";
 
 // routes
 import home from "@/components/home";
+import login from "@/components/login";
 import notFound from "@/components/notFound";
 import channels from "@/components/channels";
 // components
@@ -18,8 +19,13 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "Home",
+      name: "home",
       component: home
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: login
     },
     {
       path: "/channels",
