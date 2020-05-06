@@ -13,9 +13,14 @@ module.exports = {
       transparent: "transparent",
       current: "currentColor",
 
-      black: "#000",
       white: "#fff",
-
+      black: {
+        000: "#000",
+        100: "#494A4B",
+        200: "#212529",
+        300: "#3C3E3F",
+        400: "#343637"
+      },
       gray: {
         100: "#f7fafc",
         200: "#edf2f7",
@@ -127,6 +132,7 @@ module.exports = {
         900: "#702459"
       },
       hive: {
+        100: "#88888C",
         red: "#E31337",
         lightGrey: "#f0f0f8",
         black: "#212529",
