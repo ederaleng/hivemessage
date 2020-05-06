@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import ChatsRooms from './components/ChatsRooms';
-import MenuRooms from './components/MenuRooms';
+import ChatsRooms from "./components/ChatsRooms";
+import MenuRooms from "./components/MenuRooms";
 
 export default {
   name: "channel",
