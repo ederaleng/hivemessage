@@ -24,12 +24,7 @@
   </div>
 </template>
 <script>
-import send from "@/assets/img/send.svg";
-
 export default {
-  name: "channels",
-  data: () => ({
-    icon_send: send
-  })
+  name: "channels"
 };
 </script>

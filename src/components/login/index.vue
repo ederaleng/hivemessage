@@ -5,7 +5,9 @@
         <!-- Row -->
         <div class="w-full xl:w-3/4 lg:w-11/12 flex h-full">
           <!-- Col -->
-          <div class="w-full h-100 bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg px-12">
+          <div
+            class="w-full h-100 bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg px-12"
+          >
             <div class="relative w-full h-full flex items-center">
               <img :src="communication" class="block my-auto" />
             </div>
@@ -26,11 +28,16 @@
                 type="username"
                 placeholder="Enter username"
               />
-              <button :class="{ 'opacity-75': !existHiveKeychain }" class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none" >
+              <button
+                :class="{ 'opacity-75': !existHiveKeychain }"
+                class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
+              >
                 Login
               </button>
             </div>
-            <div class="flex flex-col lg:flex-row justify-around items-center px-8 py-0 lg:py-3 text-sm text-gray-700 font-sans">
+            <div
+              class="flex flex-col lg:flex-row justify-around items-center px-8 py-0 lg:py-3 text-sm text-gray-700 font-sans"
+            >
               <a
                 href="https://addons.mozilla.org/en-US/firefox/addon/hive-keychain/"
                 target="_blank"
@@ -50,14 +57,18 @@
                 <span> Intall for Chrome </span>
               </a>
             </div>
-            <div class="separator px-8 my-3 font-semibold text-black-400"> Other login methods </div> 
-            <div class="flex justify-around items-center px-8 py-3 text-sm text-gray-700 font-sans">
-              <button class=" border-2 bg-gray-400 w-full text-gray-800 font-bold py-2 px-4 rounded flex justify-center items-center" >
+            <div class="separator px-8 my-3 font-semibold text-black-400">
+              Other login methods
+            </div>
+            <div
+              class="flex justify-around items-center px-8 py-3 text-sm text-gray-700 font-sans"
+            >
+              <button
+                class=" border-2 bg-gray-400 w-full text-gray-800 font-bold py-2 px-4 rounded flex justify-center items-center"
+              >
                 <img class="w-1/2" :src="hivesigner" />
               </button>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -69,7 +80,7 @@ import keychain from "@/assets/img/keychain.png";
 import chrome from "@/assets/img/chrome.svg";
 import mozilla from "@/assets/img/mozilla.svg";
 import hivesigner from "@/assets/img/hivesigner.svg";
-import communication from "@/assets/img/communication.svg"
+import communication from "@/assets/img/communication.svg";
 
 export default {
   name: "login",
@@ -81,8 +92,8 @@ export default {
     communication
   }),
   computed: {
-    existHiveKeychain () {
-      return !window.hive_keychain
+    existHiveKeychain() {
+      return !window.hive_keychain;
     }
   }
 };
@@ -94,8 +105,9 @@ export default {
   align-items: center;
   text-align: center;
 }
-.separator::before, .separator::after {
-  content: '';
+.separator::before,
+.separator::after {
+  content: "";
   flex: 1;
   border-bottom: 1px solid #343637;
 }
