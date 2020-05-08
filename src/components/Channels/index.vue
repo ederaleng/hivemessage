@@ -9,9 +9,16 @@
         :key="index"
         class="cursor-pointer mb-4"
       >
-        <router-link class="h-16 w-16 bg-gray-600 flex items-center justify-center mx-auto rounded-lg" :to="getRouteChannel(channel)">
-          <img v-if="getImagenChannel(channel)" :src="getImagenChannel(channel)" />
-          <div v-else>
+        <router-link :to="getRouteChannel(channel)">
+          <img
+            class="h-16 w-16 flex items-center justify-center mx-auto rounded-full"
+            :src="getImagenChannel(channel)"
+            v-if="getImagenChannel(channel)"
+          />
+          <div
+            class="bg-gray-600 h-16 w-16 flex items-center justify-center mx-auto rounded-full"
+            v-else
+          >
             {{ getNameChannel(channel) }}
           </div>
         </router-link>
