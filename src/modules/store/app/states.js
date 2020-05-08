@@ -1,3 +1,3 @@
 export default {
-  username: 'giveaway.tera'
+  username: "giveaway.tera"
 };

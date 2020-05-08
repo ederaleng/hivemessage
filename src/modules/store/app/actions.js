@@ -1,5 +1,5 @@
 export default {
-  login ({ commit }, username) {
+  login({ commit }, username) {
     commit("setState", { key: "username", value: username });
   }
 };

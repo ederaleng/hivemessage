@@ -16,7 +16,10 @@
       >
         {{ getNameRoom(room) }}
       </router-link>
-      <button v-if="owner" class="w-full py-3 px-4 text-white flex items-center font-semibold outline-none rounded-md text-2xl hover:bg-black-200" >
+      <button
+        v-if="owner"
+        class="w-full py-3 px-4 text-white flex items-center font-semibold outline-none rounded-md text-2xl hover:bg-black-200"
+      >
         <img class="w-6 mr-2" :src="iconMore" />
         Add channel
       </button>
@@ -25,9 +28,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import More from '@/assets/img/more.svg'
-import { get as _get } from 'lodash'
+import { mapState } from "vuex";
+import More from "@/assets/img/more.svg";
+import { get as _get } from "lodash";
 
 export default {
   name: "menu-rooms",
@@ -41,22 +44,22 @@ export default {
       username: state => state.app.username
     }),
     nameChannel() {
-      const { channel } = this.$route.params
+      const { channel } = this.$route.params;
       let singleChannel = this.channels.find(dt => dt.id === channel);
-      return _get(singleChannel, 'meta_data.name', 'Not have name')
+      return _get(singleChannel, "meta_data.name", "Not have name");
     },
-    owner () {
-      const { channel } = this.$route.params
+    owner() {
+      const { channel } = this.$route.params;
       let singleChannel = this.channels.find(dt => dt.id === channel);
-      return (this.username === _get(singleChannel, 'owner', null))
+      return this.username === _get(singleChannel, "owner", null);
     }
   },
   methods: {
     getNameRoom(data) {
-      return _get(data, 'meta_data.name', _get(data, 'id').substr(0, 8))
+      return _get(data, "meta_data.name", _get(data, "id").substr(0, 8));
     },
     getRouteRoom(data) {
-      return { name: 'room', params: { room: _get(data, 'id') } }
+      return { name: "room", params: { room: _get(data, "id") } };
     }
   }
 };

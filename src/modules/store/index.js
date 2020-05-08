@@ -7,7 +7,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 // Modules
-import app from "./app"
+import app from "./app";
 import rooms from "./rooms";
 import channels from "./channels";
 import messages from "./messages";
