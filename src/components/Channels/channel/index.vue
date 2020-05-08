@@ -1,29 +1,7 @@
 <template>
   <div class="flex w-full h-full">
-    <MenuRooms />
-    <div
-      class="relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden"
-    >
-      <div
-        class="border-b-2 border-black-200 px-8 py-5 flex justify-between items-center"
-      >
-        <h1 class="text-white text-2xl leading-tight my-1 truncate">General</h1>
-      </div>
-      <div class="px-8 pt-2 pb-24 flex-1">
-        <ChatsRooms />
-      </div>
-      <div class="absolute bottom-0 w-full px-8 pb-6">
-        <div
-          class="rounded bg-black-100 px-4 border-0 flex items-center w-full"
-        >
-          <input
-            class="placeholder-hive-100 bg-black-100 pr-4 font-light text-white text-2xl rounded h-16 w-full tracking-wide outline-none"
-            placeholder="send a message"
-          />
-          <img class="h-8 ml-2" :src="icon_send" />
-        </div>
-      </div>
-    </div>
+    <MenuRooms v-if="Array.isArray(rooms) && rooms.length>0" />
+    <ChatsRooms />
   </div>
 </template>
 
@@ -31,15 +9,47 @@
 import ChatsRooms from "./components/ChatsRooms";
 import MenuRooms from "./components/MenuRooms";
 import send from "@/assets/img/send.svg";
+import { mapActions, mapState } from 'vuex';
+import { get as _get } from 'lodash'
 
 export default {
   name: "channel",
-  components: {
-    ChatsRooms,
-    MenuRooms
-  },
+  components: { ChatsRooms, MenuRooms },
   data: () => ({
     icon_send: send
-  })
+  }),
+  mounted () {
+    this.loadChannel()
+  },
+  watch: {
+    routerChannel() {
+      this.loadChannel()
+    }
+  },
+  computed: {
+    ...mapState({
+      rooms: state => state.rooms.rooms
+    }),
+    routerChannel() {
+      return this.$route.params
+    }
+  },
+  methods: {
+    ...mapActions({
+      loadRooms: 'rooms/loadRooms'
+    }),
+    getRouteRoom(data) {
+      return { name: 'room', params: { room: _get(data, 'id') } }
+    },
+    async loadChannel() {
+      const { channel, room } = this.$route.params
+      await this.loadRooms(channel)
+      if (!room && this.rooms.length>0) {
+        let firstRoom = this.getRouteRoom(this.rooms[0])
+        this.$router.push(firstRoom)
+        return;
+      }
+    }
+  }
 };
 </script>
