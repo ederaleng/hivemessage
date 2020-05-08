@@ -18,12 +18,17 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: "channels",
   mounted () {
     this.loadChannels()
+  },
+  computed: {
+    ...mapState({
+      channels: state => state.channels.channels
+    })
   },
   methods: {
     ...mapActions({
