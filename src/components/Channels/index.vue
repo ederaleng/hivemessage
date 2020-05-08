@@ -9,11 +9,11 @@
         :key="index"
         class="cursor-pointer mb-4"
       >
-        <router-link
-          :to="getRouteChannel(channel)"
-          class="bg-gray-600 h-16 w-16 flex items-center justify-center rounded-lg mx-auto"
-        >
-          {{ getNameChannel(channel) }}
+        <router-link class="h-16 w-16 bg-gray-600 flex items-center justify-center mx-auto rounded-lg" :to="getRouteChannel(channel)">
+          <img v-if="getImagenChannel(channel)" :src="getImagenChannel(channel)" />
+          <div v-else>
+            {{ getNameChannel(channel) }}
+          </div>
         </router-link>
       </div>
       <button
@@ -53,6 +53,9 @@ export default {
       loadChannels: "channels/loadChannels",
       openModal: "modals/openModal"
     }),
+    getImagenChannel(data) {
+      return _get(data, "meta_data.img", null);
+    },
     getNameChannel(data) {
       return _get(data, "meta_data.name", _get(data, "id")).substr(0, 2);
     },
