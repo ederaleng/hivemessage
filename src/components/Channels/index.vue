@@ -42,9 +42,9 @@ import Modals from "./modals";
 
 export default {
   name: "channels",
-  created () {
-    if(!this.username) {
-      this.$router.push({ name: 'login' });
+  created() {
+    if (!this.username) {
+      this.$router.push({ name: "login" });
     }
   },
   mounted() {

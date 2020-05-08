@@ -23,20 +23,20 @@
                 Login Using Hive Keychain
               </p>
               <img class="mx-auto w-20 my-4" :src="keychain" />
-              <input
-                class="h-10 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none outline-none"
-                type="username"
-                placeholder="Enter username"
-                v-model="username"
-              />
-              <button
-                :class="{ 'opacity-75': haveHiveKeychain() }"
-                :disabled="haveHiveKeychain()"
-                @click="singIn()"
-                class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
-              >
-                Login
-              </button>
+              <div v-if="have_keychain">
+                <input
+                  class="h-10 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none outline-none"
+                  type="text"
+                  placeholder="Enter username"
+                  v-model="username"
+                />
+                <button
+                  @click="singIn()"
+                  class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
+                >
+                  Login
+                </button>
+              </div>
             </div>
             <div
               class="flex flex-col lg:flex-row justify-around items-center px-8 py-0 lg:py-3 text-sm text-gray-700 font-sans"
@@ -77,14 +77,15 @@
       </div>
     </div>
     <notifications class="my-3 mx-2" position="bottom right" group="login">
-
       <template slot="body" slot-scope="props">
         <div class="bg-hive-red rounded-md py-2 px-3 my-2">
-          <a class="text-xl text-white font-bold"> {{props.item.title}} </a>
-          <div class="text-xl text-black-none font-semibold" v-html="props.item.text" />
+          <a class="text-xl text-white font-bold"> {{ props.item.title }} </a>
+          <div
+            class="text-xl text-black-none font-semibold"
+            v-html="props.item.text"
+          />
         </div>
       </template>
-
     </notifications>
   </div>
 </template>
@@ -94,7 +95,7 @@ import chrome from "@/assets/img/chrome.svg";
 import mozilla from "@/assets/img/mozilla.svg";
 import hivesigner from "@/assets/img/hivesigner.svg";
 import communication from "@/assets/img/communication.svg";
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "login",
@@ -104,25 +105,47 @@ export default {
     mozilla,
     hivesigner,
     communication,
-    username: ''
+    username: "",
+    have_keychain: false
   }),
+  created() {
+    if (this.userApp) {
+      this.$router.push({ name: "channels" });
+    }
+  },
+  mounted() {
+    this.haveHiveKeychain();
+  },
+  computed: {
+    ...mapState({
+      userApp: state => state.app.username
+    })
+  },
   methods: {
     ...mapActions({
       login: "app/login"
     }),
-    haveHiveKeychain () {
-      if(window.hive_keychain) { return true } else { return false }
+    haveHiveKeychain() {
+      if (window.hive_keychain) {
+        this.have_keychain = false;
+      } else {
+        this.have_keychain = true;
+      }
     },
-    async singIn () {
-      let result
+    async singIn() {
       try {
-        result = await this.login(this.username)
+        await this.login(this.username);
       } catch (error) {
-        console.log(error)
-        this.$notify({ group: 'login', type: "error", title: 'Error', text: 'Error in login' });
+        console.log(error);
+        this.$notify({
+          group: "login",
+          type: "error",
+          title: "Error",
+          text: "Error in login"
+        });
         return;
       }
-      console.log(result)
+      this.$router.push({ name: "channels" });
     }
   }
 };

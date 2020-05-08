@@ -30,7 +30,10 @@
             class="w-full my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-3 focus:outline-none"
             placeholder="Name channel"
           />
-          <button data-v-70c98a68="" class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none">
+          <button
+            data-v-70c98a68=""
+            class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
+          >
             Create room
           </button>
         </div>
