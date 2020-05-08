@@ -9,6 +9,7 @@ Vue.use(Vuex);
 // Modules
 import app from "./app";
 import rooms from "./rooms";
+import modals from "./modals";
 import channels from "./channels";
 import messages from "./messages";
 import directory from "./directory";
@@ -22,6 +23,7 @@ export default new Vuex.Store({
   modules: {
     app,
     rooms,
+    modals,
     channels,
     messages,
     directory

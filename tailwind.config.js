@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 module.exports = {
   prefix: "",
   important: false,
@@ -15,7 +17,7 @@ module.exports = {
 
       white: "#fff",
       black: {
-        000: "#000",
+        none: "#000",
         100: "#494A4B",
         200: "#212529",
         300: "#3C3E3F",

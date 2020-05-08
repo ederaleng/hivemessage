@@ -16,27 +16,42 @@
           {{ getNameChannel(channel) }}
         </router-link>
       </div>
+      <button
+        @click="openModal('createchannel')"
+        class=" cursor-pointer mb-4 h-16 w-16 flex items-center justify-center rounded-lg mx-auto"
+      >
+        <img class="w-100" :src="iconMore" />
+      </button>
     </div>
     <router-view></router-view>
+    <Modals v-if="appModals" />
   </div>
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
 import { get as _get } from "lodash";
+import More from "@/assets/img/more.svg";
+import Modals from "./modals";
 
 export default {
   name: "channels",
   mounted() {
     this.loadChannels();
   },
+  components: { Modals },
+  data: () => ({
+    iconMore: More
+  }),
   computed: {
     ...mapState({
+      appModals: state => state.modals.modal,
       channels: state => state.channels.channels
     })
   },
   methods: {
     ...mapActions({
-      loadChannels: "channels/loadChannels"
+      loadChannels: "channels/loadChannels",
+      openModal: "modals/openModal"
     }),
     getNameChannel(data) {
       return _get(data, "meta_data.name", _get(data, "id")).substr(0, 2);

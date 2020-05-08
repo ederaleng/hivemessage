@@ -5,7 +5,9 @@
     <div
       class="border-b-2 border-black-200 px-8 py-5 flex justify-between items-center"
     >
-      <h1 class="text-white text-2xl leading-tight my-1 truncate">General</h1>
+      <h1 class="text-white text-2xl leading-tight my-1 truncate capitalize">
+        {{ nameRoom }}
+      </h1>
     </div>
     <div class="px-8 pt-2 pb-24 flex-1">
       messages room
@@ -23,12 +25,24 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { get as _get } from "lodash";
 import send from "@/assets/img/send.svg";
 
 export default {
   name: "chats-room",
   data: () => ({
     icon_send: send
-  })
+  }),
+  computed: {
+    ...mapState({
+      rooms: state => state.rooms.rooms
+    }),
+    nameRoom() {
+      const { room } = this.$route.params;
+      let singleRoom = this.rooms.find(dt => dt.id === room);
+      return _get(singleRoom, "meta_data.name", _get(singleRoom, "id"));
+    }
+  }
 };
 </script>

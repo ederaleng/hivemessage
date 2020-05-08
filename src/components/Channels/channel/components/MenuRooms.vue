@@ -12,23 +12,24 @@
         v-for="(room, key) in rooms"
         :key="key"
         :to="getRouteRoom(room)"
-        class="py-3 px-4 text-white flex items-center font-semibold rounded-md text-xl hover:bg-black-200"
+        class="py-3 px-4 text-white flex items-center font-semibold rounded-md text-xl hover:bg-black-200 capitalize"
       >
         {{ getNameRoom(room) }}
       </router-link>
       <button
         v-if="owner"
-        class="w-full py-3 px-4 text-white flex items-center font-semibold outline-none rounded-md text-2xl hover:bg-black-200"
+        @click="openModal('createroom')"
+        class="w-full py-3 px-4 text-white flex items-center font-semibold outline-none rounded-md text-xl hover:bg-black-200"
       >
-        <img class="w-6 mr-2" :src="iconMore" />
-        Add channel
+        <img class="w-4 mr-2" :src="iconMore" />
+        create room
       </button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import More from "@/assets/img/more.svg";
 import { get as _get } from "lodash";
 
@@ -55,6 +56,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      openModal: "modals/openModal"
+    }),
     getNameRoom(data) {
       return _get(data, "meta_data.name", _get(data, "id").substr(0, 8));
     },
