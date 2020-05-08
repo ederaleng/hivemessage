@@ -1,3 +1,3 @@
 export default {
-  channelData: null
+  channels: []
 };
