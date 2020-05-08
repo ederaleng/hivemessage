@@ -27,9 +27,12 @@
                 class="h-10 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none outline-none"
                 type="username"
                 placeholder="Enter username"
+                v-model="username"
               />
               <button
-                :class="{ 'opacity-75': !existHiveKeychain }"
+                :class="{ 'opacity-75': haveHiveKeychain() }"
+                :disabled="haveHiveKeychain()"
+                @click="singIn()"
                 class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
               >
                 Login
@@ -73,6 +76,16 @@
         </div>
       </div>
     </div>
+    <notifications class="my-3 mx-2" position="bottom right" group="login">
+
+      <template slot="body" slot-scope="props">
+        <div class="bg-hive-red rounded-md py-2 px-3 my-2">
+          <a class="text-xl text-white font-bold"> {{props.item.title}} </a>
+          <div class="text-xl text-black-none font-semibold" v-html="props.item.text" />
+        </div>
+      </template>
+
+    </notifications>
   </div>
 </template>
 <script>
@@ -81,6 +94,7 @@ import chrome from "@/assets/img/chrome.svg";
 import mozilla from "@/assets/img/mozilla.svg";
 import hivesigner from "@/assets/img/hivesigner.svg";
 import communication from "@/assets/img/communication.svg";
+import { mapActions } from 'vuex';
 
 export default {
   name: "login",
@@ -89,11 +103,26 @@ export default {
     chrome,
     mozilla,
     hivesigner,
-    communication
+    communication,
+    username: ''
   }),
-  computed: {
-    existHiveKeychain() {
-      return !window.hive_keychain;
+  methods: {
+    ...mapActions({
+      login: "app/login"
+    }),
+    haveHiveKeychain () {
+      if(window.hive_keychain) { return true } else { return false }
+    },
+    async singIn () {
+      let result
+      try {
+        result = await this.login(this.username)
+      } catch (error) {
+        console.log(error)
+        this.$notify({ group: 'login', type: "error", title: 'Error', text: 'Error in login' });
+        return;
+      }
+      console.log(result)
     }
   }
 };

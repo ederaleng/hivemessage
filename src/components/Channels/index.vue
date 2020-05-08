@@ -42,6 +42,11 @@ import Modals from "./modals";
 
 export default {
   name: "channels",
+  created () {
+    if(!this.username) {
+      this.$router.push({ name: 'login' });
+    }
+  },
   mounted() {
     this.loadChannels();
   },
@@ -51,6 +56,7 @@ export default {
   }),
   computed: {
     ...mapState({
+      username: state => state.app.username,
       appModals: state => state.modals.modal,
       channels: state => state.channels.channels
     })
