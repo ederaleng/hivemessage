@@ -52,7 +52,8 @@ export default {
     owner() {
       const { channel } = this.$route.params;
       let singleChannel = this.channels.find(dt => dt.id === channel);
-      return this.username === _get(singleChannel, "owner", null);
+      console.log(singleChannel)
+      return this.username === _get(singleChannel, "username", null);
     }
   },
   methods: {

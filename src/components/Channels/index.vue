@@ -4,6 +4,12 @@
     <div
       class="bg-black-200 text-purple-lighter flex-none w-24 py-4 hidden md:block"
     >
+      <div class="cursor-pointer mb-4" >
+        <router-link :to="{ name: 'perfil' }">
+          <img :src="`https://images.hive.blog/u/${username}/avatar`" class="h-16 w-16 flex items-center justify-center mx-auto rounded-full my-3" />
+        </router-link>
+        <div class=" relative border-black-300 border-b-2 mx-6 h-px"> </div>
+      </div>
       <div
         v-for="(channel, index) in channels"
         :key="index"
@@ -67,7 +73,7 @@ export default {
       openModal: "modals/openModal"
     }),
     getImagenChannel(data) {
-      return _get(data, "meta_data.img", null);
+      return _get(data, "meta_data.urlImage", null);
     },
     getNameChannel(data) {
       return _get(data, "meta_data.name", _get(data, "id")).substr(0, 2);

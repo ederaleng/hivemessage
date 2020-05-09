@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden"
-  >
+  <div v-if="existRoom" class="relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden">
     <div
       class="border-b-2 border-black-200 px-8 py-5 flex justify-between items-center"
     >
@@ -22,22 +20,34 @@
       </div>
     </div>
   </div>
+  <div v-else class="flex justify-center items-center relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden">
+    <img class="w-1/5" :src="icon_working" />
+    <h2 class="text-4xl text-gray-909"> Not Rooms </h2>
+    <p class="text-3xl text-gray-909"> There is no room in this channel, if you are the owner </p>
+    <p class="text-3xl text-gray-909"> you can create them from button create room </p>
+  </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import { get as _get } from "lodash";
 import send from "@/assets/img/send.svg";
+import working from "@/assets/img/working.svg";
 
 export default {
   name: "chats-room",
   data: () => ({
-    icon_send: send
+    icon_send: send,
+    icon_working: working
   }),
   computed: {
     ...mapState({
       rooms: state => state.rooms.rooms
     }),
+    existRoom () {
+      const { room } = this.$route.params;
+      return room
+    },
     nameRoom() {
       const { room } = this.$route.params;
       let singleRoom = this.rooms.find(dt => dt.id === room);

@@ -27,13 +27,17 @@
         <div class="py-4 px-2">
           <input
             type="text"
+            v-model="room.name"
             class="w-full my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-3 focus:outline-none"
             placeholder="Name channel"
           />
           <button
-            data-v-70c98a68=""
+            :disabled="(!room.name || loading)"
+            @click="submitChannel()"
+            :class="{ 'opacity-50': (!room.name || loading) }"
             class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
           >
+            <img v-if="loading" class="w-6 mr-2" :src="loadingIcon" />
             Create room
           </button>
         </div>
@@ -45,8 +49,16 @@
 <script>
 // import { get as _get } from "lodash";
 import { mapActions } from "vuex";
+import loadingIcon from '@/assets/img/loading.svg'
+
 export default {
   name: "createRoom",
+  data: () => ({
+    loadingIcon,
+    room: {
+      name: ''
+    }
+  }),
   methods: {
     ...mapActions({
       closeModal: "modals/closeModal"

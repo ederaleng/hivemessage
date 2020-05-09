@@ -27,39 +27,83 @@
         <div class="py-4 px-2">
           <input
             type="text"
+            v-model="channel.name"
             class="w-full my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-3 focus:outline-none"
             placeholder="Name channel"
           />
           <textarea
+            v-model="channel.description"
             class="w-full h-64 resize-none my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-3 focus:outline-none"
             placeholder="Description channel"
           />
           <input
+            v-model="channel.urlImage"
             type="text"
             class="w-full my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-3 focus:outline-none"
-            placeholder="URL Image channel"
+            placeholder="URL Image channel (optional)"
           />
           <button
-            data-v-70c98a68=""
-            class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
+            :disabled="!channel.description || !channel.name || loading"
+            @click="submitChannel()"
+            :class="{ 'opacity-50': (!channel.description || !channel.name || loading) }"
+            class="flex justify-center bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
           >
+            <img v-if="loading" class="w-6 mr-2" :src="loadingIcon" />
             Create channel
           </button>
         </div>
       </div>
     </div>
+    <notifications class="my-3 mx-2" position="bottom right" group="create_channel">
+      <template slot="body" slot-scope="props">
+        <div class="bg-hive-red rounded-md py-2 px-3 my-2">
+          <a class="text-xl text-white font-bold"> {{ props.item.title }} </a>
+          <div
+            class="text-xl text-black-none font-semibold"
+            v-html="props.item.text"
+          />
+        </div>
+      </template>
+    </notifications>
   </div>
 </template>
 
 <script>
-// import { get as _get } from "lodash";
+import { get as _get } from "lodash";
 import { mapActions } from "vuex";
+import loadingIcon from '@/assets/img/loading.svg'
+
 export default {
   name: "createServer",
+  data: () => ({
+    loadingIcon,
+    channel: {
+      name: '',
+      description: '',
+      urlImage: ''
+    },
+    loading: false
+  }),
   methods: {
     ...mapActions({
-      closeModal: "modals/closeModal"
-    })
+      closeModal: "modals/closeModal",
+      createChannel: "channels/createChannel"
+    }),
+    async submitChannel () {
+      this.loading = true
+      try {
+        await this.createChannel(this.channel)
+      } catch (error) {
+        this.$notify({
+          group: "create_channel",
+          type: "error",
+          title: "Error in creation channel",
+          text: _get(error, 'message', 'Unidentified error')
+        });
+        return
+      }
+      this.closeModal()
+    }
   }
 };
 </script>
