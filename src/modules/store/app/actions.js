@@ -1,5 +1,5 @@
 import LS from "@/helpers/storage";
-import moment from 'moment'
+import { tryParse } from "@/utils/parsing"
 
 /* eslint-disable */ 
 export default {
@@ -11,9 +11,14 @@ export default {
         if(response.success) {
           commit("setState", { key: "username", value: username });
           commit("setState", { key: "userType", value: 'hive_keychain' });
-          LS.setItem('userActive', username)
-          LS.setItem('timeActive', (moment().unix() + 259200))
+          let list = tryParse(LS.getItem('listUsers'))
+          let listUsers = (Array.isArray(list) ? list : [])
+          if(listUsers.indexOf(keychain_username) === -1) {
+            listUsers.push(keychain_username)
+            LS.setItem('listUsers', JSON.stringify(listUsers))
+          }
           resolve(response)
+          
         }
         else {
           reject(response)

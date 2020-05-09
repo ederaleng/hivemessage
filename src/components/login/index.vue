@@ -6,9 +6,20 @@
         <div class="w-full xl:w-3/4 lg:w-11/12 flex h-full">
           <!-- Col -->
           <div
-            class="w-full h-100 bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg px-12"
+            class="w-full h-100 bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg px-12 overflow-y-auto"
           >
-            <div class="relative w-full h-full flex items-center">
+            <div v-if="listUsers.length>0" style="max-height: 508px;" class="py-4 relative w-full h-full flex flex-col">
+              <div
+                v-for="(user, key) in listUsers"
+                :key="key"
+                @click="userLogin(user)"
+                class="h-16 my-2 rounded-md px-2 flex items-center bg-white cursor-pointer"
+              >
+                <img class="w-12 mr-2 rounded-full" :src="`https://images.hive.blog/u/${user}/avatar`" />
+                <p class=" text-2xl font-semibold items-center"> {{ user }} </p>
+              </div>
+            </div>
+            <div v-else class="relative w-full h-full flex items-center">
               <img :src="communication" class="block my-auto" />
             </div>
           </div>
@@ -95,6 +106,8 @@ import chrome from "@/assets/img/chrome.svg";
 import mozilla from "@/assets/img/mozilla.svg";
 import hivesigner from "@/assets/img/hivesigner.svg";
 import communication from "@/assets/img/communication.svg";
+import LS from "@/helpers/storage";
+import { tryParse } from "@/utils/parsing"
 import { mapActions, mapState } from "vuex";
 
 export default {
@@ -106,7 +119,8 @@ export default {
     hivesigner,
     communication,
     username: "",
-    have_keychain: false
+    have_keychain: false,
+    listUsers: []
   }),
   created() {
     if (this.userApp) {
@@ -114,6 +128,7 @@ export default {
     }
   },
   mounted() {
+    this.loadUsers()
     this.haveHiveKeychain();
   },
   computed: {
@@ -131,6 +146,14 @@ export default {
       } else {
         this.have_keychain = true;
       }
+    },
+    loadUsers () {
+      let list = tryParse(LS.getItem('listUsers'))
+      this.listUsers = (Array.isArray(list) ? list : [])      
+    },
+    userLogin(user) {
+      this.username = user;
+      this.singIn()
     },
     async singIn() {
       try {
