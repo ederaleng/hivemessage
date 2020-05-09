@@ -33,7 +33,7 @@
           />
           <button
             :disabled="!room.name || loading"
-            @click="submitChannel()"
+            @click="submitRoom()"
             :class="{ 'opacity-50': !room.name || loading }"
             class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
           >
@@ -43,11 +43,26 @@
         </div>
       </div>
     </div>
+    <notifications
+      class="my-3 mx-2"
+      position="bottom right"
+      group="create_room"
+    >
+      <template slot="body" slot-scope="props">
+        <div class="bg-hive-red rounded-md py-2 px-3 my-2">
+          <a class="text-xl text-white font-bold"> {{ props.item.title }} </a>
+          <div
+            class="text-xl text-black-none font-semibold"
+            v-html="props.item.text"
+          />
+        </div>
+      </template>
+    </notifications>
   </div>
 </template>
 
 <script>
-// import { get as _get } from "lodash";
+import { get as _get } from "lodash";
 import { mapActions } from "vuex";
 import loadingIcon from "@/assets/img/loading.svg";
 
@@ -61,8 +76,23 @@ export default {
   }),
   methods: {
     ...mapActions({
+      createRoom: "rooms/createRoom",
       closeModal: "modals/closeModal"
-    })
+    }),
+    async submitRoom() {
+      try {
+        const { channel } = this.$route.params;
+        this.createRoom(Object.assign({ channel }, this.room));
+      } catch (error) {
+        this.$notify({
+          group: "create_channel",
+          type: "error",
+          title: "Error in creation channel",
+          text: _get(error, "message", "Unidentified error")
+        });
+        return;
+      }
+    }
   }
 };
 </script>

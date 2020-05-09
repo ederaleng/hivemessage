@@ -26,30 +26,40 @@ export default {
     }
     commit("setState", { key: "channels", value: finalChannels });
   },
-  /* eslint-disable */
   async createChannel({ rootState, state, commit }, custom_json) {
-    let { username, userType } = rootState.app;
-    // if (userType === 'hive_keychain') {
-      
+    let { username } = rootState.app;
     // create channel
-    let jsonCrateChannel = JSON.stringify(['createChannel',custom_json])
-    let resultCreate = await sendJSON(username, 'hivemessage', 'Posting', jsonCrateChannel, 'create channel')
-    let cloneChannels = cloneDeep(state.channels)
-    cloneChannels.push({
-      block_num: _get(resultCreate, 'result.block_num'),
-      id: _get(resultCreate, 'result.id'),
-      last_update:null,
-      meta_data: custom_json,
-      updated_at:null,
-      created_at:null,
+    let jsonCrateChannel = JSON.stringify(["createChannel", custom_json]);
+    let resultCreate = await sendJSON(
       username,
-    })
+      "hivemessage",
+      "Posting",
+      jsonCrateChannel,
+      "create channel"
+    );
+    let cloneChannels = cloneDeep(state.channels);
+    cloneChannels.push({
+      block_num: _get(resultCreate, "result.block_num"),
+      id: _get(resultCreate, "result.id"),
+      last_update: null,
+      meta_data: custom_json,
+      updated_at: null,
+      created_at: null,
+      username
+    });
     // join channel
-    let jsonJoinChannel = JSON.stringify(["joinChannel", {"channel": _get(resultCreate, 'result.id') }])
-    await sendJSON(username, 'hivemessage', 'Posting', jsonJoinChannel, 'join channel')
+    let jsonJoinChannel = JSON.stringify([
+      "joinChannel",
+      { channel: _get(resultCreate, "result.id") }
+    ]);
+    await sendJSON(
+      username,
+      "hivemessage",
+      "Posting",
+      jsonJoinChannel,
+      "join channel"
+    );
     // update channels
     commit("setState", { key: "channels", value: cloneChannels });
   }
-
-  
 };

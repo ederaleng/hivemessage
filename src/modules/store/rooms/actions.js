@@ -11,5 +11,10 @@ export default {
       finalRooms.push(Object.assign(singleRoom, { meta_data }));
     }
     commit("setState", { key: "rooms", value: finalRooms });
+  },
+  /* eslint-disable */
+  async createRoom ({}, json) {
+    
+    JSON.stringify(["createRoom", {"channel": " id_trx_room " ,"name": "general"}])
   }
 };
