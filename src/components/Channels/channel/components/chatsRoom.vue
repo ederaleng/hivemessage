@@ -10,7 +10,7 @@
         {{ nameRoom }}
       </h1>
     </div>
-    <div class="px-8 pt-2 pb-16 flex-1">
+    <div class="px-8 pt-2 pb-16 flex-1 overflow-y-auto overflow-x-hidden">
       messages room
     </div>
     <div class="absolute bottom-0 w-full px-8 pb-6">
