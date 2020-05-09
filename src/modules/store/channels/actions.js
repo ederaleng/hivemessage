@@ -29,12 +29,12 @@ export default {
   async createChannel({ rootState, state, commit }, custom_json) {
     let { username } = rootState.app;
     // create channel
-    let jsonCrateChannel = JSON.stringify(["createChannel", custom_json]);
+    let jsonCreateChannel = JSON.stringify(["createChannel", custom_json]);
     let resultCreate = await sendJSON(
       username,
       "hivemessage",
       "Posting",
-      jsonCrateChannel,
+      jsonCreateChannel,
       "create channel"
     );
     let cloneChannels = cloneDeep(state.channels);

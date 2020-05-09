@@ -72,7 +72,8 @@ export default {
     loadingIcon,
     room: {
       name: ""
-    }
+    },
+    loading: false
   }),
   methods: {
     ...mapActions({
@@ -80,9 +81,10 @@ export default {
       closeModal: "modals/closeModal"
     }),
     async submitRoom() {
+      this.loading = false
       try {
         const { channel } = this.$route.params;
-        this.createRoom(Object.assign({ channel }, this.room));
+        this.createRoom(Object.assign({ channel }, { data: this.room }));
       } catch (error) {
         this.$notify({
           group: "create_channel",

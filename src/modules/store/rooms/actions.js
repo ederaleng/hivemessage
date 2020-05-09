@@ -1,6 +1,7 @@
 import { rooms } from "@/bakend/rooms";
 import { get as _get } from "lodash";
 import { tryParse } from "@/utils/parsing";
+import { sendJSON } from "@/helpers/Keychain";
 
 export default {
   async loadRooms({ commit }, id) {
@@ -13,8 +14,17 @@ export default {
     commit("setState", { key: "rooms", value: finalRooms });
   },
   /* eslint-disable */
-  async createRoom ({}, json) {
-    
-    JSON.stringify(["createRoom", {"channel": " id_trx_room " ,"name": "general"}])
+  async createRoom ({ rootState }, json) {
+    let { username } = rootState.app;
+    // create room
+    let jsonCreateRoom = JSON.stringify(["createRoom", json])
+    let resultCreate = await sendJSON(
+      username,
+      "hivemessage",
+      "Posting",
+      jsonCreateRoom,
+      "create room"
+    );
+    console.log(resultCreate)
   }
 };
