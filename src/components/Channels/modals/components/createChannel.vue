@@ -45,7 +45,9 @@
           <button
             :disabled="!channel.description || !channel.name || loading"
             @click="submitChannel()"
-            :class="{ 'opacity-50': (!channel.description || !channel.name || loading) }"
+            :class="{
+              'opacity-50': !channel.description || !channel.name || loading
+            }"
             class="flex justify-center bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
           >
             <img v-if="loading" class="w-6 mr-2" :src="loadingIcon" />
@@ -54,7 +56,11 @@
         </div>
       </div>
     </div>
-    <notifications class="my-3 mx-2" position="bottom right" group="create_channel">
+    <notifications
+      class="my-3 mx-2"
+      position="bottom right"
+      group="create_channel"
+    >
       <template slot="body" slot-scope="props">
         <div class="bg-hive-red rounded-md py-2 px-3 my-2">
           <a class="text-xl text-white font-bold"> {{ props.item.title }} </a>
@@ -71,16 +77,16 @@
 <script>
 import { get as _get } from "lodash";
 import { mapActions } from "vuex";
-import loadingIcon from '@/assets/img/loading.svg'
+import loadingIcon from "@/assets/img/loading.svg";
 
 export default {
   name: "createServer",
   data: () => ({
     loadingIcon,
     channel: {
-      name: '',
-      description: '',
-      urlImage: ''
+      name: "",
+      description: "",
+      urlImage: ""
     },
     loading: false
   }),
@@ -89,20 +95,20 @@ export default {
       closeModal: "modals/closeModal",
       createChannel: "channels/createChannel"
     }),
-    async submitChannel () {
-      this.loading = true
+    async submitChannel() {
+      this.loading = true;
       try {
-        await this.createChannel(this.channel)
+        await this.createChannel(this.channel);
       } catch (error) {
         this.$notify({
           group: "create_channel",
           type: "error",
           title: "Error in creation channel",
-          text: _get(error, 'message', 'Unidentified error')
+          text: _get(error, "message", "Unidentified error")
         });
-        return
+        return;
       }
-      this.closeModal()
+      this.closeModal();
     }
   }
 };

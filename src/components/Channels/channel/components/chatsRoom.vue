@@ -1,5 +1,8 @@
 <template>
-  <div v-if="existRoom" class="relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden">
+  <div
+    v-if="existRoom"
+    class="relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden"
+  >
     <div
       class="border-b-2 border-black-200 px-8 py-5 flex justify-between items-center"
     >
@@ -20,11 +23,18 @@
       </div>
     </div>
   </div>
-  <div v-else class="flex justify-center items-center relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden">
+  <div
+    v-else
+    class="flex justify-center items-center relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden"
+  >
     <img class="w-1/5" :src="icon_working" />
-    <h2 class="text-4xl text-gray-909"> Not Rooms </h2>
-    <p class="text-3xl text-gray-909"> There is no room in this channel, if you are the owner </p>
-    <p class="text-3xl text-gray-909"> you can create them from button create room </p>
+    <h2 class="text-4xl text-gray-909">Not Rooms</h2>
+    <p class="text-3xl text-gray-909">
+      There is no room in this channel, if you are the owner
+    </p>
+    <p class="text-3xl text-gray-909">
+      you can create them from button create room
+    </p>
   </div>
 </template>
 
@@ -44,9 +54,9 @@ export default {
     ...mapState({
       rooms: state => state.rooms.rooms
     }),
-    existRoom () {
+    existRoom() {
       const { room } = this.$route.params;
-      return room
+      return room;
     },
     nameRoom() {
       const { room } = this.$route.params;

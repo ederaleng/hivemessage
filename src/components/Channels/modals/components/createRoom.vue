@@ -32,9 +32,9 @@
             placeholder="Name channel"
           />
           <button
-            :disabled="(!room.name || loading)"
+            :disabled="!room.name || loading"
             @click="submitChannel()"
-            :class="{ 'opacity-50': (!room.name || loading) }"
+            :class="{ 'opacity-50': !room.name || loading }"
             class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
           >
             <img v-if="loading" class="w-6 mr-2" :src="loadingIcon" />
@@ -49,14 +49,14 @@
 <script>
 // import { get as _get } from "lodash";
 import { mapActions } from "vuex";
-import loadingIcon from '@/assets/img/loading.svg'
+import loadingIcon from "@/assets/img/loading.svg";
 
 export default {
   name: "createRoom",
   data: () => ({
     loadingIcon,
     room: {
-      name: ''
+      name: ""
     }
   }),
   methods: {

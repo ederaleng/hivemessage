@@ -1,20 +1,20 @@
 <template>
   <div class="flex w-full h-full">
-    <MenuRooms v-if="Array.isArray(rooms)" />
-    <ChatsRooms />
+    <menuRoom v-if="Array.isArray(rooms)" />
+    <chatsRoom />
   </div>
 </template>
 
 <script>
-import ChatsRooms from "./components/ChatsRooms";
-import MenuRooms from "./components/MenuRooms";
+import chatsRoom from "./components/chatsRoom";
+import menuRoom from "./components/menuRoom";
 import send from "@/assets/img/send.svg";
 import { mapActions, mapState } from "vuex";
 import { get as _get } from "lodash";
 
 export default {
   name: "channel",
-  components: { ChatsRooms, MenuRooms },
+  components: { chatsRoom, menuRoom },
   data: () => ({
     icon_send: send
   }),
