@@ -3,7 +3,7 @@
     <div class="relative container mx-auto h-200px">
       <div class="flex justify-center px-6">
         <!-- Row -->
-        <div class="w-full xl:w-3/4 lg:w-11/12 flex h-full">
+        <div class="w-full xl:w-3/4/ lg:w-11/12 flex h-full">
           <!-- Col -->
           <div
             class="w-full h-100 bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg px-12 overflow-y-auto"

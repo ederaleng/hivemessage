@@ -6,7 +6,7 @@
       <div
         class="flex justify-between items-center pb-3 text-hive-black border-b-2"
       >
-        <p class="text-lg lg:text-2xl font-bold flex text-white">
+        <p class="text-md lg:text-xl font-bold flex text-white">
           <span> Create channel </span>
         </p>
         <div class="modal-close z-50" @click="closeModal()">
@@ -28,18 +28,18 @@
           <input
             type="text"
             v-model="channel.name"
-            class="w-full my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-3 focus:outline-none"
+            class="w-full my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-2 focus:outline-none"
             placeholder="Name channel"
           />
           <textarea
             v-model="channel.description"
-            class="w-full h-64 resize-none my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-3 focus:outline-none"
+            class="w-full h-32 resize-none my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-2 focus:outline-none"
             placeholder="Description channel"
           />
           <input
             v-model="channel.urlImage"
             type="text"
-            class="w-full my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-3 focus:outline-none"
+            class="w-full my-2 text-sm bg-grey-light text-grey-darkest rounded-md p-2 focus:outline-none"
             placeholder="URL Image channel (optional)"
           />
           <button
@@ -48,9 +48,9 @@
             :class="{
               'opacity-50': !channel.description || !channel.name || loading
             }"
-            class="flex justify-center bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
+            class="flex justify-center items-center text-xs bg-hive-red w-full h-8 my-2 text-white font-bold rounded outline-none"
           >
-            <img v-if="loading" class="w-6 mr-2" :src="loadingIcon" />
+            <img v-if="loading" class="w-4 mr-2" :src="loadingIcon" />
             Create channel
           </button>
         </div>

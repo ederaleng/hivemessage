@@ -1,14 +1,12 @@
 <template>
-  <div class="font-sans antialiased h-screen flex">
+  <div class="min-h-screen max-h-screen font-sans antialiased flex overflow-hidden">
     <!-- Sidebar / channel list -->
-    <div
-      class="bg-black-200 text-purple-lighter flex-none w-24 py-4 hidden md:block"
-    >
+    <div class="bg-black-200 text-purple-lighter flex-none w-16 py-4 hidden md:block">
       <div class="cursor-pointer mb-4">
         <router-link :to="{ name: 'perfil' }">
           <img
             :src="`https://images.hive.blog/u/${username}/avatar`"
-            class="h-16 w-16 flex items-center justify-center mx-auto rounded-full my-3"
+            class="h-10 w-10 flex items-center justify-center mx-auto rounded-full my-3"
           />
         </router-link>
         <div class=" relative border-black-300 border-b-2 mx-6 h-px"></div>
@@ -20,12 +18,12 @@
       >
         <router-link :to="getRouteChannel(channel)">
           <img
-            class="h-16 w-16 flex items-center justify-center mx-auto rounded-full"
+            class="h-10 w-10 flex items-center justify-center mx-auto rounded-full"
             :src="getImagenChannel(channel)"
             v-if="getImagenChannel(channel)"
           />
           <div
-            class="bg-gray-600 h-16 w-16 flex items-center justify-center mx-auto rounded-full"
+            class="bg-gray-600 h-10 w-10 flex items-center justify-center mx-auto rounded-full"
             v-else
           >
             {{ getNameChannel(channel) }}
@@ -34,7 +32,7 @@
       </div>
       <button
         @click="openModal('createchannel')"
-        class=" cursor-pointer mb-4 h-16 w-16 flex items-center justify-center rounded-lg mx-auto"
+        class=" cursor-pointer mb-4 h-10 w-10 flex items-center justify-center rounded-lg mx-auto"
       >
         <img class="w-100" :src="iconMore" />
       </button>

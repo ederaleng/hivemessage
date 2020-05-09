@@ -1,25 +1,25 @@
 <template>
   <div class="bg-black-400 flex-none w-1/6 pb-6 hidden md:block ">
     <div
-      class="border-b-2 border-black-200 px-4 py-5 flex justify-between items-center"
+      class="border-b-2 border-black-200 px-4 py-3 flex justify-between items-center"
     >
-      <h1 class="text-white font-bold text-2xl leading-tight my-1 truncate">
+      <h1 class="text-white font-bold text-xl leading-tight my-1 truncate">
         {{ nameChannel }}
       </h1>
     </div>
-    <div class="py-4 px-2">
+    <div class="py-4 px-0 md:px-2">
       <router-link
         v-for="(room, key) in rooms"
         :key="key"
         :to="getRouteRoom(room)"
-        class="py-3 px-4 text-white flex items-center font-semibold rounded-md text-xl hover:bg-black-200 capitalize"
+        class="py-2 px-4 md:px-2 text-white flex items-center font-semibold rounded-md text-sm hover:bg-black-200 capitalize"
       >
         {{ getNameRoom(room) }}
       </router-link>
       <button
         v-if="owner"
         @click="openModal('createroom')"
-        class="w-full py-3 px-4 text-white flex items-center font-semibold outline-none rounded-md text-xl hover:bg-black-200"
+        class="w-full py-3 px-4 md:px-2 text-white flex items-center font-semibold outline-none rounded-md text-sm hover:bg-black-200"
       >
         <img class="w-4 mr-2" :src="iconMore" />
         create room

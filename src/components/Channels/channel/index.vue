@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full h-full">
+  <div class="flex w-full h-100">
     <menuRoom v-if="Array.isArray(rooms)" />
     <chatsRoom />
   </div>

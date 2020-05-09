@@ -1,16 +1,26 @@
 <template>
-  <div class="relative bg-black-300 w-full px-12 py-10 text-center">
-    <p class=" text-white text-3xl my-4">Welcome {{ username }}</p>
-    <img
-      class="w-32 rounded-full mx-auto"
-      :src="`https://images.hive.blog/u/${username}/avatar`"
-    />
-    <button
-      @click="logout(username)"
-      class="block mx-auto font-semibold w-64 text-2xl h-16 my-4 rounded-md bg-white cursor-pointer"
-    >
-      Logout
-    </button>
+  <div class="min-h-screen relative bg-black-300 w-full text-center">
+    <div class="relative bg-black-400 flex-none w-1/6 h-full pb-6 hidden md:block ">
+      <div class="px-4 py-2 md:px-0 border-b-2 mx-4">
+        <p class=" text-white text-xs text-center my-4">{{ username }}</p>
+        <img
+          class="w-20 rounded-full mx-auto"
+          :src="`https://images.hive.blog/u/${username}/avatar`"
+        />
+        <button
+          @click="logout(username)"
+          class="block mx-auto font-semibold w-full text-xs h-8 my-6 rounded-sm bg-white cursor-pointer"
+        >
+          Logout
+        </button>
+      </div>
+      <div class="my-2 px-4 py-2 h-full">
+
+      </div>
+    </div>
+    <div class="w-5/6">
+
+    </div>
   </div>
 </template>
 <script>
