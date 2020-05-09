@@ -78,9 +78,9 @@
               class="flex justify-around items-center px-8 py-3 text-sm text-gray-700 font-sans"
             >
               <button
-                class=" border-2 bg-gray-400 w-full text-gray-800 font-bold py-2 px-4 rounded flex justify-center items-center"
+                class="cursor-not-allowed border-2 bg-gray-400 w-full text-gray-800 font-bold py-2 px-4 rounded flex justify-center items-center"
               >
-                <img class="w-1/2" :src="hivesigner" />
+                <img class="w-1/2 opacity-25" :src="hivesigner" />
               </button>
             </div>
           </div>
@@ -119,7 +119,6 @@ export default {
     hivesigner,
     communication,
     username: "",
-    have_keychain: false,
     listUsers: []
   }),
   created() {
@@ -129,10 +128,10 @@ export default {
   },
   mounted() {
     this.loadUsers()
-    this.haveHiveKeychain();
   },
   computed: {
     ...mapState({
+      have_keychain: state => state.app.have_keychain,
       userApp: state => state.app.username
     })
   },
@@ -140,13 +139,6 @@ export default {
     ...mapActions({
       login: "app/login"
     }),
-    haveHiveKeychain() {
-      if (window.hive_keychain) {
-        this.have_keychain = false;
-      } else {
-        this.have_keychain = true;
-      }
-    },
     loadUsers () {
       let list = tryParse(LS.getItem('listUsers'))
       this.listUsers = (Array.isArray(list) ? list : [])      

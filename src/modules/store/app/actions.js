@@ -1,5 +1,6 @@
 import LS from "@/helpers/storage";
 import { tryParse } from "@/utils/parsing"
+import { remove } from 'lodash'
 
 /* eslint-disable */ 
 export default {
@@ -26,5 +27,24 @@ export default {
       });
     })
   },
-  logout() {}
+  logout({ commit }, username) {
+    commit("setState", { key: "username", value: null });
+    commit("setState", { key: "userType", value: null });
+    let list = tryParse(LS.getItem('listUsers'))
+    let listUsers = (Array.isArray(list) ? list : [])
+    listUsers = remove(listUsers, (u) => u !== username)
+    LS.setItem('listUsers', JSON.stringify(listUsers))
+  },
+  have_keychain({ commit }) {
+    let countime = Date.now();
+    let intertal = setInterval(() => {
+      if(window.hive_keychain) {
+        commit("setState", { key: "have_keychain", value: true })
+        clearInterval(intertal)
+        return;
+      }
+      let end = Date.now() - countime
+      if(end > 3000) clearInterval(intertal)
+    }, 100)
+  }
 };
