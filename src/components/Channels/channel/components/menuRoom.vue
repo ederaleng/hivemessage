@@ -3,7 +3,7 @@
     <div
       class="border-b-2 border-black-200 px-4 py-3 flex justify-between items-center"
     >
-      <h1 class="text-white font-bold text-xl leading-tight my-1 truncate">
+      <h1 class="text-white font-bold text-sm leading-tight my-1 truncate">
         {{ nameChannel }}
       </h1>
     </div>
@@ -12,7 +12,8 @@
         v-for="(room, key) in rooms"
         :key="key"
         :to="getRouteRoom(room)"
-        class="py-2 px-4 md:px-2 text-white flex items-center font-semibold rounded-md text-sm hover:bg-black-200 capitalize"
+        :class="{ 'bg-black-100': rooomSelected(room) }"
+        class="py-1 px-4 md:px-2 text-white flex items-center font-semibold rounded-md text-xs hover:bg-black-200 capitalize"
       >
         {{ getNameRoom(room) }}
       </router-link>
@@ -64,6 +65,10 @@ export default {
     },
     getRouteRoom(data) {
       return { name: "room", params: { room: _get(data, "id") } };
+    },
+    rooomSelected (data) {
+      const { room } = this.$route.params;
+      return (_get(data, 'id', null) === room)
     }
   }
 };

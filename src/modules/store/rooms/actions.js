@@ -1,4 +1,3 @@
-  /* eslint-disable */
 import { rooms } from "@/bakend/rooms";
 import { get as _get, cloneDeep } from "lodash";
 import { tryParse } from "@/utils/parsing";

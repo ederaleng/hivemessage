@@ -3,7 +3,7 @@
     <div class="relative container mx-auto h-200px">
       <div class="flex justify-center px-6">
         <!-- Row -->
-        <div class="w-full xl:w-3/4/ lg:w-11/12 flex h-full">
+        <div class="w-full xl:w-3/4/ lg:w-10/12 flex h-full">
           <!-- Col -->
           <div
             class="w-full h-100 bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg px-12 overflow-y-auto"
@@ -13,10 +13,10 @@
                 v-for="(user, key) in listUsers"
                 :key="key"
                 @click="userLogin(user)"
-                class="h-16 my-2 rounded-md px-2 flex items-center bg-white cursor-pointer"
+                class="h-10 my-2 rounded-md px-2 flex items-center bg-white cursor-pointer"
               >
-                <img class="w-12 mr-2 rounded-full" :src="`https://images.hive.blog/u/${user}/avatar`" />
-                <p class=" text-2xl font-semibold items-center"> {{ user }} </p>
+                <img class="w-6 mr-2 rounded-full" :src="`https://images.hive.blog/u/${user}/avatar`" />
+                <p class=" text-sm font-semibold items-center"> {{ user }} </p>
               </div>
             </div>
             <div v-else class="relative w-full h-full flex items-center">
@@ -29,47 +29,45 @@
           >
             <div class="px-8 text-sm text-gray-700 font-sans">
               <p
-                class="text-2xl block mb-4 text-sm font-bold text-gray-700 text-center"
+                class="text-xl block mb-4 text-sm font-bold text-gray-700 text-center"
               >
                 Login Using Hive Keychain
               </p>
-              <img class="mx-auto w-20 my-4" :src="keychain" />
+              <img class="mx-auto w-12 my-4" :src="keychain" />
               <div v-if="have_keychain">
                 <input
-                  class="h-10 w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none outline-none"
+                  class="h-8 w-full px-3 text-sm leading-tight text-gray-700 border rounded appearance-none outline-none"
                   type="text"
                   placeholder="Enter username"
                   v-model="username"
                 />
                 <button
                   @click="singIn()"
-                  class="bg-hive-red w-full h-10 my-3 lg:my-2 text-white font-bold py-2 px-4 rounded outline-none"
+                  class="bg-hive-red w-full h-8 my-3 lg:my-2 text-white font-bold px-4 rounded outline-none"
                 >
                   Login
                 </button>
               </div>
-            </div>
-            <div
-              class="flex flex-col lg:flex-row justify-around items-center px-8 py-0 lg:py-3 text-sm text-gray-700 font-sans"
-            >
-              <a
-                href="https://addons.mozilla.org/en-US/firefox/addon/hive-keychain/"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                class="bg-hive-red hover:bg-hive-red text-white font-bold py-2 px-4 my-1 lg:my-auto w-full lg:w-auto rounded inline-flex items-center"
-              >
-                <img class="w-4 h-4 mr-2" :src="mozilla" />
-                <span> Intall for Mozilla </span>
-              </a>
-              <a
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                href="https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep"
-                class="bg-hive-red hover:bg-hive-red text-white font-bold py-2 px-4 my-2 lg:my-auto w-full lg:w-auto rounded inline-flex items-center"
-              >
-                <img class="w-4 h-4 mr-2" :src="chrome" />
-                <span> Intall for Chrome </span>
-              </a>
+              <div class="flex flex-col justify-between lg:flex-row items-center py-0 text-sm text-gray-700 font-sans">
+                <a
+                  href="https://addons.mozilla.org/en-US/firefox/addon/hive-keychain/"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  class="bg-hive-red hover:bg-hive-red text-white font-bold py-2 px-4 my-2 lg:mr-2 lg:my-auto w-full rounded inline-flex items-center"
+                >
+                  <img class="w-4 h-4 mr-2" :src="mozilla" />
+                  <span> Intall for Mozilla </span>
+                </a>
+                <a
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  href="https://chrome.google.com/webstore/detail/hive-keychain/jcacnejopjdphbnjgfaaobbfafkihpep"
+                  class="bg-hive-red hover:bg-hive-red text-white font-bold py-2 px-4 my-2 lg:ml-2 lg:my-auto w-full rounded inline-flex items-center"
+                >
+                  <img class="w-4 h-4 mr-2" :src="chrome" />
+                  <span> Intall for Chrome </span>
+                </a>
+              </div>
             </div>
             <div class="separator px-8 my-3 font-semibold text-black-400">
               Other login methods
@@ -80,7 +78,7 @@
               <button
                 class="cursor-not-allowed border-2 bg-gray-400 w-full text-gray-800 font-bold py-2 px-4 rounded flex justify-center items-center"
               >
-                <img class="w-1/2 opacity-25" :src="hivesigner" />
+                <img class="w-2/6 opacity-25" :src="hivesigner" />
               </button>
             </div>
           </div>
