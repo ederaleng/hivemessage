@@ -15,13 +15,6 @@ export default {
       );
       let meta_data = tryParse(_get(dtChannel, "data.meta_data"));
       let channel = _get(dtChannel, "data");
-      // let trxData = await client.database.call("get_transaction", [
-      //   _get(dtChannel, "data.id")
-      // ]);
-      // channel["owner"] = _get(
-      //   trxData,
-      //   "operations[0][1].required_posting_auths[0]"
-      // );
       finalChannels.push(Object.assign(channel, { meta_data }));
     }
     commit("setState", { key: "channels", value: finalChannels });

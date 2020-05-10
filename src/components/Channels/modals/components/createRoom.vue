@@ -81,10 +81,10 @@ export default {
       closeModal: "modals/closeModal"
     }),
     async submitRoom() {
-      this.loading = false
+      this.loading = true
       try {
         const { channel } = this.$route.params;
-        this.createRoom(Object.assign({ channel }, { data: this.room }));
+        await this.createRoom(Object.assign({ channel }, { data: this.room }));
       } catch (error) {
         this.$notify({
           group: "create_channel",
@@ -94,6 +94,7 @@ export default {
         });
         return;
       }
+      this.closeModal();
     }
   }
 };

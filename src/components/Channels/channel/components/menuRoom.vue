@@ -19,7 +19,7 @@
       <button
         v-if="owner"
         @click="openModal('createroom')"
-        class="w-full py-3 px-4 md:px-2 text-white flex items-center font-semibold outline-none rounded-md text-sm hover:bg-black-200"
+        class="w-full py-3 px-4 md:px-2 text-white flex items-center font-semibold outline-none rounded-md text-sm hover:bg-black-200 truncate"
       >
         <img class="w-4 mr-2" :src="iconMore" />
         create room
