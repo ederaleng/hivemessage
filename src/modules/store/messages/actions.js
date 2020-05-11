@@ -26,6 +26,5 @@ export default {
       jsonSendMessage,
       "send message"
     );
-    console.log(resultCreate)
   }
 };

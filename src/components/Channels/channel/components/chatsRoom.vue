@@ -102,7 +102,6 @@ export default {
     },
     async loadRoom () {
       const { room } = this.$route.params;
-      console.log(this.$route.params)
       await this.loadMessages({ room });
     },
     async sendToRoom () {
