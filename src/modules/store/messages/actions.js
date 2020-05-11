@@ -5,7 +5,7 @@ import { sendJSON } from "@/helpers/Keychain";
 import { tryParse } from "@/utils/parsing";
 
 export default {
-  async loadMessages ({}, objDT) {
+  async loadMessages ({ commit }, objDT) {
     let { room, offset } = objDT
     let { data } = await messages.get(`/room/${room}${offset?`?offset=${offset}`:''}`);
     let finalMessages = [];

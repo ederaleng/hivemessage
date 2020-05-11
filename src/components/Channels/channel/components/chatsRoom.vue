@@ -10,10 +10,20 @@
         {{ nameRoom }}
       </h1>
     </div>
-    <div class="px-8 pt-2 pb-16 flex-1 overflow-y-auto overflow-x-hidden">
-      
+    <div class="pr-8 pt-2 mr-1 mb-16 flex-1 overflow-y-auto overflow-x-hidden">
+      <div v-for="(message, key) in messages" :key="key" class="w-full my-2">
+        <div v-if="getMessage(message)" class="pl-8 flex text-white px-2 rounded-r-md hover:bg-black-500">
+          <img class="w-10 h-10 rounded-full" :src="getImageUserMessage(message)" />
+          <div class="ml-2 mr-6 text-justify ">
+            <h5 class="text-white font-semibold text-sm"> {{ getUserMessage(message) }} </h5>
+            <p class="text-gray-100 font-light w-full text-sm">
+              {{ getMessage(message) }}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="absolute bottom-0 w-full px-8 pb-6">
+    <div class="absolute bg-black-300 bottom-0 w-full px-8 pb-6">
       <div class="rounded bg-black-100 px-4 border-0 flex items-center w-full">
         <input
           class="placeholder-hive-100 bg-black-100 pr-4 font-light text-white text-xl rounded h-10 w-full tracking-wide outline-none"
@@ -63,7 +73,8 @@ export default {
   },
   computed: {
     ...mapState({
-      rooms: state => state.rooms.rooms
+      rooms: state => state.rooms.rooms,
+      messages: state => state.messages.messages
     }),
     existRoom() {
       const { room } = this.$route.params;
@@ -80,6 +91,15 @@ export default {
       loadMessages: "messages/loadMessages",
       sendMessageToRoom: "messages/sendMessageToRoom"
     }),
+    getUserMessage(data) {
+      return _get(data, 'username', null)
+    },
+    getImageUserMessage (data) {
+      return `https://images.hive.blog/u/${_get(data, 'username', null)}/avatar`
+    },
+    getMessage(data) {
+      return _get(data, 'meta_data.message')
+    },
     async loadRoom () {
       const { room } = this.$route.params;
       console.log(this.$route.params)
@@ -100,3 +120,17 @@ export default {
   }
 };
 </script>
+<style scoped>
+::-webkit-scrollbar {
+  background-color: rgba(71, 71, 71, 0.808);
+  border-radius: 4px;
+  height: 8px;
+  width: 8px;
+  margin-left: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(41, 41, 41, 0.986);
+  border-radius: 4px;
+}
+</style>

@@ -1,5 +1,4 @@
 export let tryParse = json => {
-  console.log("json:",json)
   try {
     return JSON.parse(json);
   } catch (err) {
