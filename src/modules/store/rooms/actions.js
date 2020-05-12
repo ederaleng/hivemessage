@@ -2,7 +2,7 @@ import { rooms } from "@/bakend/rooms";
 import { get as _get, cloneDeep } from "lodash";
 import { tryParse } from "@/utils/parsing";
 import { sendJSON } from "@/helpers/Keychain";
-import moment from "moment"
+import moment from "moment";
 
 export default {
   async loadRooms({ commit }, id) {
@@ -14,10 +14,10 @@ export default {
     }
     commit("setState", { key: "rooms", value: finalRooms });
   },
-  async createRoom ({ rootState, state, commit }, custom_json) {
+  async createRoom({ rootState, state, commit }, custom_json) {
     let { username } = rootState.app;
     // create room
-    let jsonCreateRoom = JSON.stringify(["createRoom", custom_json])
+    let jsonCreateRoom = JSON.stringify(["createRoom", custom_json]);
     let resultCreate = await sendJSON(
       username,
       "hivemessage",
@@ -29,13 +29,13 @@ export default {
     let newRoom = {
       channel: _get(custom_json, "channel"),
       created_at: moment.utc().unix(),
-      id: _get(resultCreate, "result.id", 'Not hace id'),
+      id: _get(resultCreate, "result.id", "Not hace id"),
       last_update: null,
       locked: false,
-      meta_data: _get(custom_json, 'data', {}),
-      updated_at: moment.utc().unix(),
-    }
-    cloneRooms.push(newRoom)
+      meta_data: _get(custom_json, "data", {}),
+      updated_at: moment.utc().unix()
+    };
+    cloneRooms.push(newRoom);
     commit("setState", { key: "rooms", value: cloneRooms });
   }
 };

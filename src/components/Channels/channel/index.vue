@@ -31,7 +31,7 @@ export default {
       rooms: state => state.rooms.rooms
     }),
     routerChannel() {
-      const { channel } = this.$route.params
+      const { channel } = this.$route.params;
       return channel;
     }
   },

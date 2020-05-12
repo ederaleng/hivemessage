@@ -8,4 +8,4 @@ export default {
   removeItem: function(key) {
     return localStorage.removeItem(`hm_${key}`);
   }
-}
+};

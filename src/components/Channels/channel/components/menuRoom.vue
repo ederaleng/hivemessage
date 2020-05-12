@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-black-400 flex-none w-1/6 hidden md:block overflow-y-auto overflow-x-hidden">
+  <div
+    class="bg-black-400 flex-none w-1/6 hidden md:block overflow-y-auto overflow-x-hidden"
+  >
     <div
       class="border-b-2 border-black-200 px-4 py-3 flex justify-between items-center"
     >
@@ -66,9 +68,9 @@ export default {
     getRouteRoom(data) {
       return { name: "room", params: { room: _get(data, "id") } };
     },
-    rooomSelected (data) {
+    rooomSelected(data) {
       const { room } = this.$route.params;
-      return (_get(data, 'id', null) === room)
+      return _get(data, "id", null) === room;
     }
   }
 };

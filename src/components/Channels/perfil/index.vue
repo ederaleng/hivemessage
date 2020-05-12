@@ -1,6 +1,8 @@
 <template>
   <div class="min-h-screen relative bg-black-300 w-full text-center">
-    <div class="relative bg-black-400 flex-none w-1/6 h-full max-h-screen pb-6 hidden md:block overflow-y-auto overflow-x-hidden">
+    <div
+      class="relative bg-black-400 flex-none w-1/6 h-full max-h-screen pb-6 hidden md:block overflow-y-auto overflow-x-hidden"
+    >
       <div class="px-4 py-2 md:px-0 border-b-2 mx-4">
         <p class=" text-white text-ms text-center my-4">{{ username }}</p>
         <img
@@ -14,13 +16,9 @@
           Logout
         </button>
       </div>
-      <div class="my-2 px-4 py-2 h-100">
-
-      </div>
+      <div class="my-2 px-4 py-2 h-100"></div>
     </div>
-    <div class="w-5/6">
-
-    </div>
+    <div class="w-5/6"></div>
   </div>
 </template>
 <script>
@@ -38,9 +36,9 @@ export default {
     }),
     async logout(username) {
       try {
-        await this.logoutApp(username)
+        await this.logoutApp(username);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
       this.$router.push({ name: "login" });
     }

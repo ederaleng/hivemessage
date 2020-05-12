@@ -81,7 +81,7 @@ export default {
       closeModal: "modals/closeModal"
     }),
     async submitRoom() {
-      this.loading = true
+      this.loading = true;
       try {
         const { channel } = this.$route.params;
         await this.createRoom(Object.assign({ channel }, { data: this.room }));

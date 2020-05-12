@@ -8,15 +8,22 @@
           <div
             class="w-full h-100 bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg px-12 overflow-y-auto"
           >
-            <div v-if="listUsers.length>0" style="max-height: 508px;" class="py-4 relative w-full h-full flex flex-col">
+            <div
+              v-if="listUsers.length > 0"
+              style="max-height: 508px;"
+              class="py-4 relative w-full h-full flex flex-col"
+            >
               <div
                 v-for="(user, key) in listUsers"
                 :key="key"
                 @click="userLogin(user)"
                 class="h-10 my-2 rounded-md px-2 flex items-center bg-white cursor-pointer"
               >
-                <img class="w-6 mr-2 rounded-full" :src="`https://images.hive.blog/u/${user}/avatar`" />
-                <p class=" text-sm font-semibold items-center"> {{ user }} </p>
+                <img
+                  class="w-6 mr-2 rounded-full"
+                  :src="`https://images.hive.blog/u/${user}/avatar`"
+                />
+                <p class=" text-sm font-semibold items-center">{{ user }}</p>
               </div>
             </div>
             <div v-else class="relative w-full h-full flex items-center">
@@ -48,7 +55,9 @@
                   Login
                 </button>
               </div>
-              <div class="flex flex-col justify-between lg:flex-row items-center py-0 text-sm text-gray-700 font-sans">
+              <div
+                class="flex flex-col justify-between lg:flex-row items-center py-0 text-sm text-gray-700 font-sans"
+              >
                 <a
                   href="https://addons.mozilla.org/en-US/firefox/addon/hive-keychain/"
                   target="_blank"
@@ -105,7 +114,7 @@ import mozilla from "@/assets/img/mozilla.svg";
 import hivesigner from "@/assets/img/hivesigner.svg";
 import communication from "@/assets/img/communication.svg";
 import LS from "@/helpers/storage";
-import { tryParse } from "@/utils/parsing"
+import { tryParse } from "@/utils/parsing";
 import { mapActions, mapState } from "vuex";
 
 export default {
@@ -125,7 +134,7 @@ export default {
     }
   },
   mounted() {
-    this.loadUsers()
+    this.loadUsers();
   },
   computed: {
     ...mapState({
@@ -137,13 +146,13 @@ export default {
     ...mapActions({
       login: "app/login"
     }),
-    loadUsers () {
-      let list = tryParse(LS.getItem('listUsers'))
-      this.listUsers = (Array.isArray(list) ? list : [])      
+    loadUsers() {
+      let list = tryParse(LS.getItem("listUsers"));
+      this.listUsers = Array.isArray(list) ? list : [];
     },
     userLogin(user) {
       this.username = user;
-      this.singIn()
+      this.singIn();
     },
     async singIn() {
       try {

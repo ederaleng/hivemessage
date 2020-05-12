@@ -26,5 +26,10 @@ export default {
       jsonSendMessage,
       "send message"
     );
+  },
+  
+  // eslint-disable-next-line
+  wsMessage () {
+
   }
 };

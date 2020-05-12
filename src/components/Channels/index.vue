@@ -1,7 +1,11 @@
 <template>
-  <div class="min-h-screen max-h-screen font-sans antialiased flex overflow-hidden">
+  <div
+    class="min-h-screen max-h-screen font-sans antialiased flex overflow-hidden"
+  >
     <!-- Sidebar / channel list -->
-    <div class="bg-black-200 text-purple-lighter flex-none w-16 py-4 hidden md:block">
+    <div
+      class="bg-black-200 text-purple-lighter flex-none w-16 py-4 hidden md:block"
+    >
       <div class="cursor-pointer mb-4">
         <router-link :to="{ name: 'perfil' }">
           <img

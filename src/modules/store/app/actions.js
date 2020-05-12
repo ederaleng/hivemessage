@@ -1,6 +1,6 @@
 import LS from "@/helpers/storage";
-import { tryParse } from "@/utils/parsing"
-import { remove } from 'lodash'
+import { tryParse } from "@/utils/parsing";
+import { remove } from "lodash";
 
 /* eslint-disable */ 
 export default {
