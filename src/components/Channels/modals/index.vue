@@ -5,6 +5,7 @@
   >
     <createRoom v-if="modalsPanel == 'createroom'" />
     <createChannel v-if="modalsPanel == 'createchannel'" />
+    <inviteChannel v-if="modalsPanel == 'inviteChannel'" />
   </div>
 </template>
 
@@ -12,12 +13,14 @@
 import { mapState } from "vuex";
 import createRoom from "./components/createRoom";
 import createChannel from "./components/createChannel";
+import inviteChannel from "./components/inviteChannel";
 
 export default {
   name: "modals",
   components: {
     createRoom,
-    createChannel
+    createChannel,
+    inviteChannel
   },
   computed: {
     ...mapState({

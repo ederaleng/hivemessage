@@ -8,6 +8,10 @@
       <h1 class="text-white font-bold text-sm leading-tight my-1 truncate">
         {{ nameChannel }}
       </h1>
+      <div class="flex">
+        <img @click="openModal('inviteChannel')" class="w-4 h-4 mx-1" :src="icon_invite" />
+        <!-- <img class="w-4 h-4 mx-1" :src="icon_settings" /> -->
+      </div>
     </div>
     <div class="py-4 px-0 md:px-2">
       <router-link
@@ -33,13 +37,17 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import More from "@/assets/img/more.svg";
 import { get as _get } from "lodash";
+import More from "@/assets/img/more.svg";
+import invite from "@/assets/img/invite.svg";
+import settings from "@/assets/img/settings.svg";
 
 export default {
   name: "menu-rooms",
   data: () => ({
-    iconMore: More
+    iconMore: More,
+    icon_invite: invite,
+    icon_settings: settings,
   }),
   computed: {
     ...mapState({

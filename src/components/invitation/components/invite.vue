@@ -137,16 +137,17 @@ export default {
       this.listUsers = Array.isArray(list) ? list : [];
     },
     async joinToChannel() {
-      this.loading = true;
       if (this.loading) {
         return;
       }
+      this.loading = true;
       // configure custom json
       let { channel } = this.$route.params;
       let username =
         this.userSelected == "another" ? this.useranother : this.userSelected;
       let _custom = { channel: channel, username };
       try {
+        console.log(_custom)
         await this.joinChannel(_custom);
       } catch (error) {
         this.$notify({
