@@ -92,8 +92,10 @@ export default {
           title: "Error in creation channel",
           text: _get(error, "message", "Unidentified error")
         });
+        this.loading = false;
         return;
       }
+      this.loading = false;
       this.closeModal();
     }
   }

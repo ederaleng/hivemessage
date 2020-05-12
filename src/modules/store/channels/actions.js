@@ -55,9 +55,7 @@ export default {
     // update channels
     commit("setState", { key: "channels", value: cloneChannels });
   },
-  // eslint-disable-next-line
   async checkChannel({ commit }, channel_id) {
-    console.log(channel_id)
     let { data } = await channels.get(`/${channel_id}`);
     if(_get(data, 'data', null) === null) {
       throw 'Channel not found'
@@ -66,5 +64,18 @@ export default {
     let meta_data = tryParse(_get(channel_dt, "meta_data"));
     let finalDt = Object.assign(channel_dt, { meta_data })
     commit("setState", { key: "invitate", value: finalDt });
+  },
+  // eslint-disable-next-line
+  async joinChannel({}, custom_json) {
+    let { username, channel } = custom_json
+    let jsonJoinChannel = JSON.stringify(["joinChannel", { channel }])
+    // console.log(username, jsonJoinChannel)
+    await sendJSON(
+      username,
+      "hivemessage",
+      "Posting",
+      jsonJoinChannel,
+      "join channel"
+    )
   }
 };
