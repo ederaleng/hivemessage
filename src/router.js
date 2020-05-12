@@ -6,10 +6,13 @@ import home from "@/components/home";
 import login from "@/components/login";
 import notFound from "@/components/notFound";
 import channels from "@/components/channels";
+import invitation from "@/components/invitation";
 // components
 import channel from "@/components/channels/channel";
 import room from "@/components/channels/channel/components/chatsRoom";
 import perfil from "@/components/channels/perfil";
+import invite from "@/components/invitation/components/invite.vue";
+import invite_404 from "@/components/invitation/components/invite_404.vue";
 
 Vue.use(Router);
 
@@ -27,6 +30,23 @@ export default new Router({
       path: "/login",
       name: "login",
       component: login
+    },
+    {
+      path: "/invite",
+      name: "invite",
+      component: invitation,
+      children: [
+        {
+          path: "404",
+          name: "invite_404",
+          component: invite_404
+        },
+        {
+          path: ":channel",
+          name: "invite_channel",
+          component: invite
+        }
+      ]
     },
     {
       path: "/channels",

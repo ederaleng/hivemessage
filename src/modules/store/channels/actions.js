@@ -54,5 +54,17 @@ export default {
     );
     // update channels
     commit("setState", { key: "channels", value: cloneChannels });
+  },
+  // eslint-disable-next-line
+  async checkChannel({ commit }, channel_id) {
+    console.log(channel_id)
+    let { data } = await channels.get(`/${channel_id}`);
+    if(_get(data, 'data', null) === null) {
+      throw 'Channel not found'
+    }
+    let channel_dt = _get(data, 'data', null)
+    let meta_data = tryParse(_get(channel_dt, "meta_data"));
+    let finalDt = Object.assign(channel_dt, { meta_data })
+    commit("setState", { key: "invitate", value: finalDt });
   }
 };
