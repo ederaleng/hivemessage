@@ -10,8 +10,11 @@
         {{ nameRoom }}
       </h1>
     </div>
-    <div class="pr-8 pt-2 mr-1 mb-16 flex-1 overflow-y-auto overflow-x-hidden">
-      <div v-for="(message, key) in messages" :key="key" class="w-full my-2">
+    <div
+      id="full_messages"
+      class="relative pr-8 pt-2 mr-1 mb-16 flex-col justify-end items-stretch h-full overflow-y-auto overflow-x-hidden"
+    >
+      <div v-for="(message, key) in messages" :key="key" class="relative w-full my-2">
         <div
           v-if="getMessage(message)"
           class="pl-8 flex text-white px-2 rounded-r-md hover:bg-black-500"
@@ -75,9 +78,10 @@ export default {
     sending: false
   }),
   watch: {
-    existRoom(room) {
+    async existRoom(room) {
       if (room != undefined) {
-        this.loadRoom();
+        await this.loadRoom();
+        await this.modeScroll();
       }
     }
   },
@@ -100,7 +104,9 @@ export default {
     ...mapActions({
       loadMessages: "messages/loadMessages",
       sendMessageToRoom: "messages/sendMessageToRoom",
-      wsMessage: "messages/wsMessage"
+      startPooling: "messages/startPooling",
+      stopPooling: "messages/stopPooling",
+      clearMessages: "messages/clearMessages"
     }),
     getUserMessage(data) {
       return _get(data, "username", null);
@@ -117,8 +123,10 @@ export default {
     },
     async loadRoom() {
       const { room } = this.$route.params;
+      await this.stopPooling();
+      await this.clearMessages();
       await this.loadMessages({ room });
-      await this.wsMessage();
+      await this.startPooling({ room });
     },
     async sendToRoom() {
       if (this.sending || this.message == "") {
@@ -133,6 +141,10 @@ export default {
       }
       this.message = "";
       this.sending = false;
+    },
+    modeScroll () {
+      var objDiv = document.getElementById("full_messages");
+      objDiv.scrollTop = objDiv.scrollHeight;
     }
   }
 };
