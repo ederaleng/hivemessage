@@ -15,7 +15,11 @@
         </router-link>
         <div class=" relative border-black-300 border-b-2 mx-6 h-px"></div>
       </div>
-      <div v-for="(channel, index) in channels" :key="index" class="cursor-pointer mb-4">
+      <div
+        v-for="(channel, index) in channels"
+        :key="index"
+        class="cursor-pointer mb-4"
+      >
         <router-link :to="getRouteChannel(channel)">
           <img
             class="h-10 w-10 flex items-center justify-center mx-auto rounded-full"

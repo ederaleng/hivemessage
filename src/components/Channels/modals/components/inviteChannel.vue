@@ -24,21 +24,18 @@
         </div>
       </div>
       <div class="my-2">
-
         <p class="bg-black-300 text-white rounded-md truncate p-2 my-2">
           {{ urlChannel }}
         </p>
-        <button @click="inviteLink()" class="w-full px-4 py-1 bg-hive-red h-8 text-white font-bold rounded outline-none">
+        <button
+          @click="inviteLink()"
+          class="w-full px-4 py-1 bg-hive-red h-8 text-white font-bold rounded outline-none"
+        >
           Copy
         </button>
-
       </div>
     </div>
-    <notifications
-      class="m-3"
-      position="bottom center"
-      group="copy_invite"
-    >
+    <notifications class="m-3" position="bottom center" group="copy_invite">
       <template slot="body" slot-scope="props">
         <div class=" bg-green-600 rounded-md py-2 px-3 my-2">
           <a class=" text-md text-white font-bold"> {{ props.item.title }} </a>
@@ -53,15 +50,15 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import copy from 'copy-to-clipboard';
+import { mapActions } from "vuex";
+import copy from "copy-to-clipboard";
 
 export default {
   name: "invite_channel",
   computed: {
-    urlChannel () {
+    urlChannel() {
       const { channel } = this.$route.params;
-      return `${location.origin}/invite/${channel}`
+      return `${location.origin}/invite/${channel}`;
     }
   },
   methods: {
@@ -69,15 +66,15 @@ export default {
       createRoom: "rooms/createRoom",
       closeModal: "modals/closeModal"
     }),
-    inviteLink () {
+    inviteLink() {
       copy(this.urlChannel);
       this.$notify({
         group: "copy_invite",
         type: "success",
         title: "Invite",
-        text: 'Invitation copied'
+        text: "Invitation copied"
       });
-    },
+    }
   }
 };
 </script>

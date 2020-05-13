@@ -10,7 +10,10 @@
         {{ nameRoom }}
       </h1>
     </div>
-    <div id="full_messages" class="relative pr-8 pt-2 mr-1 mb-16 flex-col justify-end items-stretch h-full overflow-y-auto overflow-x-hidden" >
+    <div
+      id="full_messages"
+      class="relative pr-8 pt-2 mr-1 mb-16 flex-col justify-end items-stretch h-full overflow-y-auto overflow-x-hidden"
+    >
       <div
         v-for="(message, key) in messages"
         :key="key"
@@ -23,7 +26,10 @@
           :class="{ 'bg-black-500': hoverMessage == getIdMessage(message) }"
           class="relative pl-8 flex text-white px-2 rounded-r-md"
         >
-          <img class="w-10 h-10 rounded-full" :src="getImageUserMessage(message)" />
+          <img
+            class="w-10 h-10 rounded-full"
+            :src="getImageUserMessage(message)"
+          />
           <div class="ml-2 mr-6 text-justify ">
             <h5 class="text-white font-semibold text-sm">
               {{ getUserMessage(message) }}
@@ -32,18 +38,37 @@
               {{ getMessage(message) }}
             </p>
           </div>
-          <div v-show="hoverMessage == getIdMessage(message)" class="absolute top-0 right-0 pr-2">
+          <div
+            v-show="hoverMessage == getIdMessage(message)"
+            class="absolute top-0 right-0 pr-2"
+          >
             <div class="relative">
-              <img @click="isVisible = !isVisible" class="w-4" :src="icon_morePoint" />
-              <transition enter-active-class="transition duration-300 ease-out transform" enter-class="-translate-y-3 scale-95 opacity-0" enter-to-class="translate-y-0 scale-100 opacity-100" leave-active-class="transition duration-150 ease-in transform" leave-class="translate-y-0 opacity-100" leave-to-class="-translate-y-3 opacity-0">
+              <img
+                @click="isVisible = !isVisible"
+                class="w-4"
+                :src="icon_morePoint"
+              />
+              <transition
+                enter-active-class="transition duration-300 ease-out transform"
+                enter-class="-translate-y-3 scale-95 opacity-0"
+                enter-to-class="translate-y-0 scale-100 opacity-100"
+                leave-active-class="transition duration-150 ease-in transform"
+                leave-class="translate-y-0 opacity-100"
+                leave-to-class="-translate-y-3 opacity-0"
+              >
                 <div
-                  v-show="isVisible" class="absolute bg-white top-0 right-0 mr-8 rounded-sm"
+                  v-show="isVisible"
+                  class="absolute bg-white top-0 right-0 mr-8 rounded-sm"
                 >
                   <div class="relative">
                     <a
                       target="_blank"
                       rel="nofollow noopener noreferrer"
-                      :href="`https://www.hiveblockexplorer.com/tx/${getIdMessage(message)}`"
+                      :href="
+                        `https://www.hiveblockexplorer.com/tx/${getIdMessage(
+                          message
+                        )}`
+                      "
                       class="block text-sm p-1 font-light text-gray-700 whitespace-no-wrap hover:bg-gray-200 rounded-sm"
                     >
                       check transaction
@@ -134,7 +159,7 @@ export default {
       stopPooling: "messages/stopPooling",
       clearMessages: "messages/clearMessages"
     }),
-    getIdMessage (data) {
+    getIdMessage(data) {
       return _get(data, "id", null);
     },
     getUserMessage(data) {
@@ -171,13 +196,13 @@ export default {
       this.message = "";
       this.sending = false;
     },
-    changeFocus (data) {
-      if(!this.isVisible) {
-        this.hoverMessage = this.getIdMessage(data)
+    changeFocus(data) {
+      if (!this.isVisible) {
+        this.hoverMessage = this.getIdMessage(data);
         return;
       }
     },
-    modeScroll () {
+    modeScroll() {
       var objDiv = document.getElementById("full_messages");
       objDiv.scrollTop = objDiv.scrollHeight;
     }

@@ -17,7 +17,6 @@ import invite_404 from "@/components/invitation/components/invite_404.vue";
 import me from "@/components/channels/perfil/components/pm";
 import pm from "@/components/channels/perfil/components/pm";
 
-
 Vue.use(Router);
 
 export default new Router({

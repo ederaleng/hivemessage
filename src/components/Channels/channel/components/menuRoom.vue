@@ -9,7 +9,11 @@
         {{ nameChannel }}
       </h1>
       <div class="flex">
-        <img @click="openModal('inviteChannel')" class="w-4 h-4 mx-1" :src="icon_invite" />
+        <img
+          @click="openModal('inviteChannel')"
+          class="w-4 h-4 mx-1"
+          :src="icon_invite"
+        />
         <!-- <img class="w-4 h-4 mx-1" :src="icon_settings" /> -->
       </div>
     </div>
@@ -47,7 +51,7 @@ export default {
   data: () => ({
     iconMore: More,
     icon_invite: invite,
-    icon_settings: settings,
+    icon_settings: settings
   }),
   computed: {
     ...mapState({

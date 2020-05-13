@@ -147,7 +147,7 @@ export default {
         this.userSelected == "another" ? this.useranother : this.userSelected;
       let _custom = { channel: channel, username };
       try {
-        console.log(_custom)
+        console.log(_custom);
         await this.joinChannel(_custom);
       } catch (error) {
         this.$notify({

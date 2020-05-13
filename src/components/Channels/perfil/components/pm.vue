@@ -16,5 +16,5 @@ export default {
   data: () => ({
     construction
   })
-}
+};
 </script>
