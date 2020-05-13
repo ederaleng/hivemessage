@@ -4,7 +4,7 @@
   >
     <!-- Sidebar / channel list -->
     <div
-      class="bg-black-200 text-purple-lighter flex-none w-16 py-4 hidden md:block"
+      class="bg-black-200 text-purple-lighter flex-none w-16 py-4 hidden md:block overflow-y-auto overflow-x-hidden"
     >
       <div class="cursor-pointer mb-4">
         <router-link :to="{ name: 'perfil' }">
@@ -15,11 +15,7 @@
         </router-link>
         <div class=" relative border-black-300 border-b-2 mx-6 h-px"></div>
       </div>
-      <div
-        v-for="(channel, index) in channels"
-        :key="index"
-        class="cursor-pointer mb-4"
-      >
+      <div v-for="(channel, index) in channels" :key="index" class="cursor-pointer mb-4">
         <router-link :to="getRouteChannel(channel)">
           <img
             class="h-10 w-10 flex items-center justify-center mx-auto rounded-full"
@@ -89,3 +85,17 @@ export default {
   }
 };
 </script>
+<style scoped>
+::-webkit-scrollbar {
+  background-color: rgba(71, 71, 71, 0.808);
+  border-radius: 4px;
+  height: 8px;
+  width: 8px;
+  margin-left: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(41, 41, 41, 0.986);
+  border-radius: 4px;
+}
+</style>

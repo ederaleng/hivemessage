@@ -13,6 +13,10 @@ import room from "@/components/channels/channel/components/chatsRoom";
 import perfil from "@/components/channels/perfil";
 import invite from "@/components/invitation/components/invite.vue";
 import invite_404 from "@/components/invitation/components/invite_404.vue";
+// pages under construction
+import me from "@/components/channels/perfil/components/pm";
+import pm from "@/components/channels/perfil/components/pm";
+
 
 Vue.use(Router);
 
@@ -55,9 +59,22 @@ export default new Router({
       redirect: { name: "perfil" },
       children: [
         {
-          path: "/",
+          path: "perfil",
           name: "perfil",
-          component: perfil
+          component: perfil,
+          redirect: { name: "me" },
+          children: [
+            {
+              path: "",
+              name: "me",
+              component: me
+            },
+            {
+              path: "pm",
+              name: "pm",
+              component: pm
+            }
+          ]
         },
         {
           path: ":channel",

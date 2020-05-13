@@ -83,3 +83,17 @@ export default {
   }
 };
 </script>
+<style scoped>
+::-webkit-scrollbar {
+  background-color: rgba(71, 71, 71, 0.808);
+  border-radius: 4px;
+  height: 8px;
+  width: 8px;
+  margin-left: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(41, 41, 41, 0.986);
+  border-radius: 4px;
+}
+</style>

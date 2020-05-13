@@ -3,7 +3,7 @@
     <div
       class="relative w-8/12 md:w-6/12 lg:w-4/12 bg-white rounded-md px-6 py-4 text-center"
     >
-      <img :src="Icon404" class="w-4/12 mx-auto" />
+      <img :src="Icon404" class="w-full mx-auto" />
       <p class="text-xl font-semibold my-2 text-center">
         Wrong invitation
       </p>
