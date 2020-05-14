@@ -2,20 +2,20 @@ import Vue from "vue";
 import Router from "vue-router";
 
 // routes
-import home from "@/components/home";
-import login from "@/components/login";
-import notFound from "@/components/notFound";
-import channels from "@/components/channels";
-import invitation from "@/components/invitation";
+import home from "./components/home";
+import login from "./components/login";
+import notFound from "./components/notFound";
+import channels from "./components/channels";
+import invitation from "./components/invitation";
 // components
-import channel from "@/components/channels/channel";
-import room from "@/components/channels/channel/components/chatsRoom";
-import perfil from "@/components/channels/perfil";
-import invite from "@/components/invitation/components/invite.vue";
-import invite_404 from "@/components/invitation/components/invite_404.vue";
+import channel from "./components/channels/channel";
+import room from "./components/channels/channel/components/chatsRoom";
+import perfil from "./components/channels/perfil";
+import invite from "./components/invitation/components/invite.vue";
+import invite_404 from "./components/invitation/components/invite_404.vue";
 // pages under construction
-import me from "@/components/channels/perfil/components/pm";
-import pm from "@/components/channels/perfil/components/pm";
+import me from "./components/channels/perfil/components/pm";
+import pm from "./components/channels/perfil/components/pm";
 
 Vue.use(Router);
 
