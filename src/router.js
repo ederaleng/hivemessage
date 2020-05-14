@@ -21,20 +21,21 @@ Vue.use(Router);
 
 export default new Router({
   base: '/',
+  mode: "history",
   routes: [
     {
-      path: "",
+      path: "/",
       name: "home",
       redirect: { name: "login" },
       component: home
     },
     {
-      path: "login",
+      path: "/login",
       name: "login",
       component: login
     },
     {
-      path: "invite",
+      path: "/invite",
       name: "invite",
       component: invitation,
       children: [
@@ -51,7 +52,7 @@ export default new Router({
       ]
     },
     {
-      path: "channels",
+      path: "/channels",
       name: "channels",
       component: channels,
       redirect: { name: "perfil" },
