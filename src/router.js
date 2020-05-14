@@ -24,18 +24,18 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/",
+      path: "",
       name: "home",
       redirect: { name: "login" },
       component: home
     },
     {
-      path: "/login",
+      path: "login",
       name: "login",
       component: login
     },
     {
-      path: "/invite",
+      path: "invite",
       name: "invite",
       component: invitation,
       children: [
@@ -52,7 +52,7 @@ export default new Router({
       ]
     },
     {
-      path: "/channels",
+      path: "channels",
       name: "channels",
       component: channels,
       redirect: { name: "perfil" },
