@@ -1,6 +1,14 @@
 <template>
   <div class="flex w-full h-100">
-    <menuRoom v-if="Array.isArray(rooms)" />
+    <div
+     :class="{ 'hidden': !navigation, 'block': navigation }"
+     class="
+     main-modal absolute inset-0 z-50 flex flex-col justify-center items-center animated fadeIn faster
+     md:block md:h-full md:w-1/6 md:relative" style="background: rgba(0,0,0,.7);"
+    >
+      <menuRoom v-if="Array.isArray(rooms)" />
+      <svg @click="changeNavigationStatus()" class="block md:hidden mt-2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 18 18" > <path style="fill: #fff;" d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path></svg>
+    </div>
     <chatsRoom />
   </div>
 </template>
@@ -28,7 +36,8 @@ export default {
   },
   computed: {
     ...mapState({
-      rooms: state => state.rooms.rooms
+      rooms: state => state.rooms.rooms,
+      navigation: state => state.rooms.app.navigation
     }),
     routerChannel() {
       const { channel } = this.$route.params;
@@ -37,7 +46,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      loadRooms: "rooms/loadRooms"
+      loadRooms: "rooms/loadRooms",
+      changeNavigationStatus: "rooms/changeNavigationStatus"
     }),
     getRouteRoom(data) {
       return { name: "room", params: { room: _get(data, "id") } };

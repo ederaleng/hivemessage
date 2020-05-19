@@ -1,3 +1,6 @@
 export default {
-  rooms: []
+  rooms: [],
+  app: {
+    navigation: false
+  }
 };

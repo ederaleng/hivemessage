@@ -3,6 +3,7 @@ import { get as _get, cloneDeep } from "lodash";
 import { tryParse } from "@/utils/parsing";
 import { sendJSON } from "@/helpers/Keychain";
 import moment from "moment";
+import { Object } from "core-js";
 
 export default {
   async loadRooms({ commit }, id) {
@@ -37,5 +38,11 @@ export default {
     };
     cloneRooms.push(newRoom);
     commit("setState", { key: "rooms", value: cloneRooms });
+  },
+
+  changeNavigationStatus ({ commit, state }) {
+    let currentStatus = cloneDeep(state.app)
+    let newStatus = Object.assign(currentStatus, { navigation: !(_get(currentStatus, 'navigation', false)) })
+    commit("setState", { key: "app", value: newStatus });
   }
 };

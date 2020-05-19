@@ -4,9 +4,12 @@
     class="relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden"
   >
     <div
-      class="border-b-2 border-black-200 px-8 py-3 flex justify-between items-center"
+      class="border-b-2 border-black-200 px-8 py-3 flex justify-start items-center"
     >
-      <h1 class="text-white text-sm leading-tight my-1 truncate capitalize">
+      <svg class="fill-current block md:hidden text-white h-5 w-5 mr-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+      </svg>
+      <h1 @click="changeNavigationStatus()" class="text-white text-sm leading-tight my-1 truncate capitalize">
         {{ nameRoom }}
       </h1>
     </div>
@@ -157,7 +160,8 @@ export default {
       sendMessageToRoom: "messages/sendMessageToRoom",
       startPooling: "messages/startPooling",
       stopPooling: "messages/stopPooling",
-      clearMessages: "messages/clearMessages"
+      clearMessages: "messages/clearMessages",
+      changeNavigationStatus: "rooms/changeNavigationStatus"
     }),
     getIdMessage(data) {
       return _get(data, "id", null);
@@ -177,6 +181,7 @@ export default {
     },
     async loadRoom() {
       const { room } = this.$route.params;
+      await this.changeNavigationStatus();
       await this.stopPooling();
       await this.clearMessages();
       await this.loadMessages({ room });
