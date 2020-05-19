@@ -7,7 +7,7 @@
      md:block md:h-full md:w-1/6 md:relative" style="background: rgba(0,0,0,.7);"
     >
       <menuRoom v-if="Array.isArray(rooms)" />
-      <svg @click="changeNavigationStatus()" class="block md:hidden mt-2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 18 18" > <path style="fill: #fff;" d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path></svg>
+      <svg @click="navigationRoomStatus()" class="block md:hidden mt-2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 18 18" > <path style="fill: #fff;" d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path></svg>
     </div>
     <chatsRoom />
   </div>
@@ -47,7 +47,7 @@ export default {
   methods: {
     ...mapActions({
       loadRooms: "rooms/loadRooms",
-      changeNavigationStatus: "rooms/changeNavigationStatus"
+      navigationRoomStatus: "rooms/navigationRoomStatus"
     }),
     getRouteRoom(data) {
       return { name: "room", params: { room: _get(data, "id") } };

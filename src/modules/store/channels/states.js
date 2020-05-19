@@ -1,4 +1,7 @@
 export default {
   channels: [],
-  invitate: null
+  invitate: null,
+  app: {
+    navigation: false
+  }
 };

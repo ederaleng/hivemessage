@@ -1,6 +1,6 @@
 <template>
   <div class="
-    relative bg-black-400 flex-none block overflow-y-auto overflow-x-hidden w-11/12 h-11/12 rounded-md
+    relative bg-black-200 md:bg-black-400 flex-none block overflow-y-auto overflow-x-hidden w-11/12 h-11/12 rounded-md
     md:rounded-none md:w-full md:h-full
   ">
     <div
@@ -15,7 +15,6 @@
           class="w-4 h-4 mx-1"
           :src="icon_invite"
         />
-        <!-- <img class="w-4 h-4 mx-1" :src="icon_settings" /> -->
       </div>
     </div>
     <div class="py-4 px-0 md:px-2">
