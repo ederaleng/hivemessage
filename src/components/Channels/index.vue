@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen max-h-screen font-sans antialiased flex overflow-hidden">
+  <div
+    class="min-h-screen max-h-screen font-sans antialiased flex overflow-hidden"
+  >
     <Navigations />
     <router-view></router-view>
     <Modals v-if="appModals" />
@@ -8,7 +10,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import Modals from "./modals";
-import Navigations from "./components/navigations"
+import Navigations from "./components/navigations";
 
 export default {
   name: "channels",

@@ -1,8 +1,10 @@
 <template>
-  <div class="
+  <div
+    class="
     relative bg-black-200 md:bg-black-400 flex-none block overflow-y-auto overflow-x-hidden w-11/12 h-11/12 rounded-md
     md:rounded-none md:w-full md:h-full
-  ">
+  "
+  >
     <div
       class="border-b-2 border-black-200 px-4 py-3 flex justify-between items-center"
     >

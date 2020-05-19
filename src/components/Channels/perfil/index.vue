@@ -1,6 +1,8 @@
 <template>
   <div class="flex min-h-screen relative bg-black-300 w-full text-center">
-    <div class="relative bg-black-400 flex w-1/6 h-full max-h-screen pb-6 hidden md:block overflow-y-auto overflow-x-hidden">
+    <div
+      class="relative bg-black-400 flex w-1/6 h-full max-h-screen pb-6 hidden md:block overflow-y-auto overflow-x-hidden"
+    >
       <div class="px-4 py-2 md:px-0 border-b-2 mx-4">
         <p class=" text-white text-ms text-center my-4">{{ username }}</p>
         <router-link

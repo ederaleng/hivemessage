@@ -6,10 +6,18 @@
     <div
       class="border-b-2 border-black-200 px-8 py-3 flex justify-start items-center"
     >
-      <svg @click="navigationChannelStatus()" class="fill-current block md:hidden text-white h-5 w-5 mr-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+      <svg
+        @click="navigationChannelStatus()"
+        class="fill-current block md:hidden text-white h-5 w-5 mr-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
       </svg>
-      <h1 @click="navigationRoomStatus()" class="text-white text-sm leading-tight my-1 truncate capitalize">
+      <h1
+        @click="navigationRoomStatus()"
+        class="text-white text-sm leading-tight my-1 truncate capitalize"
+      >
         {{ nameRoom }}
       </h1>
     </div>

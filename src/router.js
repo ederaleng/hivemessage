@@ -20,7 +20,7 @@ import pm from "./components/channels/perfil/components/pm";
 Vue.use(Router);
 
 export default new Router({
-  base: '/',
+  base: "/",
   mode: "history",
   routes: [
     {
