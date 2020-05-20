@@ -2,14 +2,14 @@
   <div  class="relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden">
     <div class="border-b-2 border-black-200 px-8 py-3 flex justify-start items-center">
       <svg
-        @click="navigationChannelStatus()"
+        @click="navigationChannelStatus(true)"
         class="fill-current block md:hidden text-white h-5 w-5 mr-4"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
       </svg>
-      <h1 @click="navigationRoomStatus()" class="text-white text-sm leading-tight my-1 truncate capitalize">
+      <h1 @click="navigationRoomStatus(true)" class="text-white text-sm leading-tight my-1 truncate capitalize">
         {{ nameRoom ? nameRoom : 'Channel not have rooms' }}
       </h1>
     </div>
@@ -178,7 +178,7 @@ export default {
     },
     async loadRoom() {
       const { room } = this.$route.params;
-      await this.navigationRoomStatus();
+      await this.navigationRoomStatus(false);
       await this.stopPooling();
       await this.clearMessages();
       await this.loadMessages({ room });

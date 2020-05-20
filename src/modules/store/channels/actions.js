@@ -78,11 +78,9 @@ export default {
       "join channel"
     );
   },
-  navigationChannelStatus({ commit, state }) {
+  navigationChannelStatus({ commit, state }, status) {
     let currentStatus = cloneDeep(state.app);
-    let newStatus = Object.assign(currentStatus, {
-      navigation: !_get(currentStatus, "navigation", false)
-    });
+    let newStatus = Object.assign(currentStatus, { navigation: status });
     commit("setState", { key: "app", value: newStatus });
   }
 };

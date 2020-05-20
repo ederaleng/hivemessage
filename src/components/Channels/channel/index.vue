@@ -9,7 +9,7 @@
     >
       <menuRoom v-if="Array.isArray(rooms)" />
       <svg
-        @click="navigationRoomStatus()"
+        @click="navigationRoomStatus(false)"
         class="block md:hidden mt-2"
         xmlns="http://www.w3.org/2000/svg"
         width="30"

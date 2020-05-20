@@ -65,7 +65,7 @@
       </div>
     </div>
     <svg
-      @click="navigationChannelStatus()"
+      @click="navigationChannelStatus(false)"
       class="block md:hidden mt-2"
       xmlns="http://www.w3.org/2000/svg"
       width="30"
