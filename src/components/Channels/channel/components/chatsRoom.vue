@@ -1,6 +1,10 @@
 <template>
-  <div  class="relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden">
-    <div class="border-b-2 border-black-200 px-8 py-3 flex justify-start items-center">
+  <div
+    class="relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden"
+  >
+    <div
+      class="border-b-2 border-black-200 px-8 py-3 flex justify-start items-center"
+    >
       <svg
         @click="navigationChannelStatus(true)"
         class="fill-current block md:hidden text-white h-5 w-5 mr-4"
@@ -9,13 +13,19 @@
       >
         <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
       </svg>
-      <h1 @click="navigationRoomStatus(true)" class="text-white text-sm leading-tight my-1 truncate capitalize">
-        {{ nameRoom ? nameRoom : 'Channel not have rooms' }}
+      <h1
+        @click="navigationRoomStatus(true)"
+        class="text-white text-sm leading-tight my-1 truncate capitalize"
+      >
+        {{ nameRoom ? nameRoom : "Channel not have rooms" }}
       </h1>
     </div>
-    
 
-    <div v-if="existRoom" id="full_messages" class="relative pr-8 pt-2 mb-16 flex-col justify-end items-stretch h-full overflow-y-auto overflow-x-hidden" >
+    <div
+      v-if="existRoom"
+      id="full_messages"
+      class="relative pr-8 pt-2 mb-16 flex-col justify-end items-stretch h-full overflow-y-auto overflow-x-hidden"
+    >
       <div
         v-for="(message, key) in messages"
         :key="key"
@@ -83,7 +93,10 @@
         </div>
       </div>
     </div>
-    <div v-if="existRoom" class="absolute bg-black-300 bottom-0 w-full px-8 pb-6">
+    <div
+      v-if="existRoom"
+      class="absolute bg-black-300 bottom-0 w-full px-8 pb-6"
+    >
       <div class="rounded bg-black-100 px-4 border-0 flex items-center w-full">
         <input
           class="placeholder-hive-100 bg-black-100 pr-4 font-light text-white text-xl rounded h-10 w-full tracking-wide outline-none"
@@ -95,8 +108,10 @@
       </div>
     </div>
 
-
-    <div v-if="!existRoom" class="px-4 flex justify-center items-center relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden">
+    <div
+      v-if="!existRoom"
+      class="px-4 flex justify-center items-center relative bg-black-300 flex-1 flex flex-col bg-white overflow-hidden"
+    >
       <img class="w-1/5" :src="icon_working" />
       <h2 class="text-4xl text-gray-909">Not Rooms</h2>
       <p class="text-3xl text-gray-909">

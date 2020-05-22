@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import Navigations from "./components/navigations"
+import Navigations from "./components/navigations";
 export default {
   name: "perfil",
   components: {

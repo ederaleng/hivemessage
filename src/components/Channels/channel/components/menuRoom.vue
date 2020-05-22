@@ -77,7 +77,7 @@ export default {
     ...mapActions({
       openModal: "modals/openModal"
     }),
-    activeRoute (data) {
+    activeRoute(data) {
       const { room } = this.$route.params;
       return !(_get(data, "id", null) === room);
     },
