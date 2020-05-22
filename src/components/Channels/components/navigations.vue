@@ -32,7 +32,7 @@
         :key="index"
         class="cursor-pointer mb-4"
       >
-        <router-link :to="getRouteChannel(channel)">
+        <router-link :event="activeRoute(channel) ? 'click' : ''" :to="getRouteChannel(channel)">
           <div class="block flex items-center mx-auto w-3/4 md:w-auto md:px-0">
             <img
               class="h-10 w-10 flex items-center justify-center rounded-full mr-2 md:mx-auto"
@@ -101,6 +101,10 @@ export default {
       openModal: "modals/openModal",
       navigationChannelStatus: "channels/navigationChannelStatus"
     }),
+    activeRoute (data) {
+      const { channel } = this.$route.params;
+      return !(_get(data, "id", null) === channel);
+    },
     getImagenChannel(data) {
       return _get(data, "meta_data.urlImage", null);
     },

@@ -14,7 +14,7 @@ import perfil from "./components/channels/perfil";
 import invite from "./components/invitation/components/invite.vue";
 import invite_404 from "./components/invitation/components/invite_404.vue";
 // pages under construction
-import me from "./components/channels/perfil/components/pm";
+import me from "./components/channels/perfil/components/me";
 import pm from "./components/channels/perfil/components/pm";
 
 Vue.use(Router);

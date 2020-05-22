@@ -23,6 +23,7 @@
       <router-link
         v-for="(room, key) in rooms"
         :key="key"
+        :event="activeRoute(room) ? 'click' : ''"
         :to="getRouteRoom(room)"
         :class="{ 'bg-black-100': rooomSelected(room) }"
         class="py-1 px-4 md:px-2 text-white flex items-center font-semibold rounded-md text-xs hover:bg-black-200 capitalize"
@@ -76,6 +77,10 @@ export default {
     ...mapActions({
       openModal: "modals/openModal"
     }),
+    activeRoute (data) {
+      const { room } = this.$route.params;
+      return !(_get(data, "id", null) === room);
+    },
     getNameRoom(data) {
       return _get(data, "meta_data.name", _get(data, "id").substr(0, 8));
     },
