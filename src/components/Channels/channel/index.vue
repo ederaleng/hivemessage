@@ -1,12 +1,6 @@
 <template>
   <div class="flex w-full h-100">
-    <div
-      :class="{ hidden: !navigation, block: navigation }"
-      class="
-     main-modal absolute inset-0 z-50 flex flex-col justify-center items-center animated fadeIn faster
-     md:block md:h-full md:w-1/6 md:relative"
-      style="background: rgba(0,0,0,.7);"
-    >
+    <div v-show="load_channel" :class="{ hidden: !navigation, block: navigation }" class="main-modal absolute inset-0 z-50 flex flex-col justify-center items-center animated fadeIn faster md:block md:h-full md:w-1/6 md:relative" style="background: rgba(0,0,0,.7);">
       <menuRoom v-if="Array.isArray(rooms)" />
       <svg
         @click="navigationRoomStatus(false)"
@@ -22,7 +16,10 @@
         ></path>
       </svg>
     </div>
-    <chatsRoom />
+    <chatsRoom v-show="load_channel" />
+    <div v-show="!load_channel" class="bg-black-300 w-full h-full flex justify-center items-center">
+      <img class="w-12 h-12 text-black mr-2" :src="icon_loading" />
+    </div>
   </div>
 </template>
 
@@ -30,6 +27,7 @@
 import chatsRoom from "./components/chatsRoom";
 import menuRoom from "./components/menuRoom";
 import send from "@/assets/img/send.svg";
+import loadingIcon from "@/assets/img/loading.svg";
 import { mapActions, mapState } from "vuex";
 import { get as _get } from "lodash";
 
@@ -37,7 +35,9 @@ export default {
   name: "channel",
   components: { chatsRoom, menuRoom },
   data: () => ({
-    icon_send: send
+    icon_send: send,
+    icon_loading: loadingIcon,
+    load_channel: false
   }),
   mounted() {
     this.loadChannel();
@@ -67,12 +67,13 @@ export default {
     },
     async loadChannel() {
       const { channel, room } = this.$route.params;
+      this.load_channel = false
       await this.loadRooms(channel);
       if (!room && this.rooms.length > 0) {
         let firstRoom = this.getRouteRoom(this.rooms[0]);
         this.$router.push(firstRoom);
-        return;
       }
+      this.load_channel = true
     }
   }
 };
